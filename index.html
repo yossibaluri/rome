@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>רומא 2027</title>
+<meta name="description" content="חופשה רומנטית ברומא, פברואר 2027 — לו״ז, המלצות, מידע ורשימות">
+<meta name="theme-color" content="#3A1F2B">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="app-icon-192.png">
+<link rel="apple-touch-icon" href="app-icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Tailwind CSS (runtime build; cached for offline use by sw.js) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Frank Ruhl Libre"', 'serif'],
+          body: ['Heebo', 'sans-serif']
+        },
+        colors: {
+          navy:       '#3A1F2B',
+          navydeep:   '#24131B',
+          gold:       '#C9A227',
+          goldlight:  '#E8C766',
+          terracotta: '#B5502F',
+          teal:       '#5C7A4E',
+          cream:      '#FBF6EE',
+          paper:      '#F3EADD'
+        },
+        boxShadow: {
+          'card': '0 10px 30px -12px rgba(58,31,43,0.25)',
+          'nav': '0 -8px 24px -8px rgba(58,31,43,0.18)'
+        }
+      }
+    }
+  }
+</script>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Fonts: Frank Ruhl Libre (display) + Heebo (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700;900&family=Heebo:wght@300;400;500;600;700;800&display=swap">
+
+<style>
+  html, body { font-family: 'Heebo', system-ui, sans-serif; }
+  body { background: linear-gradient(180deg, #F4ECE8 0%, #F6EEE6 45%, #FBF6EE 100%); background-attachment: fixed; }
+  .font-display { font-family: 'Frank Ruhl Libre', 'Heebo', serif; }
+  ::-webkit-scrollbar { display:none; }
+  * { scrollbar-width: none; -ms-overflow-style:none; }
+  .snap-x-mandatory { scroll-snap-type: x mandatory; }
+  .snap-start { scroll-snap-align: start; }
+  #bottomNav { padding-bottom: env(safe-area-inset-bottom); }
+  #topHeader { padding-top: env(safe-area-inset-top); }
+
+  /* Header: expanded (default) / collapsed */
+  #topHeader .header-inner { padding-top: 1rem; padding-bottom: 1rem; transition: padding .15s ease-out; }
+  #topHeader .header-tagline { max-height: 1.25rem; opacity: 1; overflow: hidden; transition: max-height .15s ease-out, opacity .12s ease-out; }
+  #topHeader .header-title { font-size: 1.5rem; transition: font-size .15s ease-out; }
+  #topHeader #headerWeather { transition: padding .15s ease-out, transform .15s ease-out; }
+  #topHeader.collapsed .header-inner { padding-top: 0.4rem; padding-bottom: 0.4rem; }
+  #topHeader.collapsed .header-tagline { max-height: 0; opacity: 0; }
+  #topHeader.collapsed .header-title { font-size: 1.125rem; }
+  #topHeader.collapsed #headerWeather { padding: 0.25rem 0.625rem; transform: scale(.92); }
+
+  .tab-panel { animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  #infoModal .sheet { transition: transform .3s cubic-bezier(.32,.72,0,1); overscroll-behavior: contain; }
+
+  /* Icon tile: stands in wherever there is no real photo of the place */
+  .tile {
+    --c: #3A1F2B;
+    position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    color: var(--c);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--c) 12%, #FBF6EE), color-mix(in srgb, var(--c) 30%, #FBF6EE));
+  }
+  .tile::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: repeating-linear-gradient(45deg, color-mix(in srgb, var(--c) 9%, transparent) 0 2px, transparent 2px 14px);
+  }
+  .tile > i { position: relative; z-index: 1; opacity: .85; }
+
+  /* Checklists (colour comes from --c on the list) */
+  .checklist-item .check-box { border: 2px solid rgba(36,19,27,.3); }
+  .checklist-item .check-box i { display: none; }
+  .checklist-item.checked .check-box { background: var(--c); border-color: var(--c); }
+  .checklist-item.checked .check-box i { display: block; }
+  .checklist-item.checked .check-label { text-decoration: line-through; opacity: .5; }
+  .checklist-item input:focus-visible + .check-box { outline: 2px solid var(--c); outline-offset: 2px; }
+
+  /* Detail-sheet text blocks */
+  .blk ul { margin-top: .35rem; display: flex; flex-direction: column; gap: .35rem; }
+  .blk li { position: relative; padding-inline-start: .9rem; }
+  .blk li::before { content: ""; position: absolute; inset-inline-start: 0; top: .6em; width: .35rem; height: .35rem; border-radius: 9999px; background: currentColor; opacity: .45; }
+  .blk a, .facts a { color: #5C7A4E; font-weight: 600; text-decoration: underline; text-decoration-style: dotted; }
+
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] > summary .chev { transform: rotate(180deg); }
+  .chev { transition: transform .2s; }
+  .next-up { box-shadow: 0 0 0 2px #C9A227, 0 10px 30px -12px rgba(58,31,43,0.25); }
+</style>
+</head>
+
+<body class="text-navydeep min-h-screen pb-32">
+
+<!-- ================================================================ -->
+<!--  BLOCK: TOP HEADER                                                -->
+<!-- ================================================================ -->
+<header id="topHeader" class="sticky top-0 z-40 bg-navy text-cream shadow-lg">
+  <div class="header-inner max-w-md mx-auto px-5 flex items-center justify-between">
+    <div class="min-w-0">
+      <p id="headerTagline" class="header-tagline text-xs tracking-wide text-goldlight font-medium">חופשה רומנטית</p>
+      <h1 class="header-title font-display font-bold leading-tight">רומא <span class="text-goldlight">2027</span></h1>
+    </div>
+    <div id="headerWeather" class="flex items-center gap-2 bg-white/10 rounded-2xl px-3 py-2 min-w-[84px] justify-center" aria-label="מזג האוויר ברומא כרגע">
+      <i class="fa-solid fa-spinner fa-spin text-goldlight"></i>
+    </div>
+  </div>
+</header>
+
+<!-- ================================================================ -->
+<!--  BLOCK: MAIN TAB PANELS                                          -->
+<!-- ================================================================ -->
+<main class="max-w-md mx-auto px-4 pt-4">
+
+  <!-- ---------- TAB 1: הלו"ז שלנו (Timeline) ---------- -->
+  <section id="tab-timeline" class="tab-panel overflow-x-hidden">
+    <div id="daySelector" class="flex gap-3 overflow-x-auto snap-x-mandatory pb-2 -mx-1 px-1"></div>
+    <p id="weatherNote" class="text-xs text-navydeep/70 leading-snug mt-1 px-1"></p>
+    <div id="activityFeed" class="mt-4 flex flex-col gap-3"></div>
+  </section>
+
+  <!-- ---------- TAB 2: המלצות (Vault) ---------- -->
+  <section id="tab-vault" class="tab-panel hidden">
+    <h2 class="font-display text-xl font-bold mb-1 mt-1">המלצות שלנו</h2>
+    <p class="text-sm text-navydeep/70 mb-3">מקומות שכדאי לבדוק אם יש זמן פנוי</p>
+    <div id="vaultFilters" class="flex gap-2 mb-4"></div>
+    <div id="vaultFeed" class="flex flex-col gap-3"></div>
+  </section>
+
+  <!-- ---------- TAB 3: מידע (Info) ---------- -->
+  <section id="tab-info" class="tab-panel hidden">
+    <h2 class="font-display text-xl font-bold mb-1 mt-1">מידע</h2>
+    <p class="text-sm text-navydeep/70 mb-4">כל מה שצריך לדעת — זמין גם בלי קליטה</p>
+
+    <!-- Emergency: one tap to call -->
+    <div class="bg-white rounded-2xl shadow-card p-4 mb-4 border-2 border-terracotta/30">
+      <h3 class="font-display text-base font-bold mb-3 flex items-center gap-2 text-terracotta">
+        <i class="fa-solid fa-triangle-exclamation"></i> חירום — לחיצה מחייגת
+      </h3>
+      <div id="emergencyButtons" class="grid grid-cols-2 gap-2"></div>
+    </div>
+
+    <!-- Practical guides (transport tickets, taxis, money, emergency details) -->
+    <div id="infoGuides" class="flex flex-col gap-3 mb-4"></div>
+
+    <!-- Transport maps + links -->
+    <div id="toolkitInfoTop" class="flex flex-col gap-3 mb-4"></div>
+
+    <!-- Currency Converter -->
+    <div class="bg-white rounded-2xl shadow-card p-4 mb-4">
+      <h3 class="font-display text-base font-bold mb-1 flex items-center gap-2">
+        <i class="fa-solid fa-money-bill-transfer text-gold"></i> מחשבון המרה
+      </h3>
+      <p class="text-xs text-navydeep/70 mb-4">אירו (EUR) ↔ שקל (ש״ח)</p>
+      <div class="flex items-end gap-2">
+        <div class="flex-1">
+          <label for="eurInput" class="text-xs font-semibold text-navydeep/70 mb-1 block">€ EUR</label>
+          <input id="eurInput" type="number" inputmode="decimal" placeholder="0"
+            class="w-full bg-paper rounded-xl px-3 py-3 text-lg font-semibold text-navydeep focus:outline-none focus:ring-2 focus:ring-gold/50 transition">
+        </div>
+        <div class="w-9 h-9 rounded-full bg-navy text-cream flex items-center justify-center shrink-0 mb-1.5">
+          <i class="fa-solid fa-arrow-right-arrow-left text-xs"></i>
+        </div>
+        <div class="flex-1">
+          <label for="ilsInput" class="text-xs font-semibold text-navydeep/70 mb-1 block">ש״ח</label>
+          <input id="ilsInput" type="number" inputmode="decimal" placeholder="0"
+            class="w-full bg-paper rounded-xl px-3 py-3 text-lg font-semibold text-navydeep focus:outline-none focus:ring-2 focus:ring-gold/50 transition">
+        </div>
+      </div>
+      <p class="text-xs text-navydeep/60 mt-3 text-center">שער: <span id="rateNoteValue"></span></p>
+    </div>
+
+    <div id="toolkitInfoRest" class="flex flex-col gap-3 mb-4"></div>
+
+    <!-- Offline status + version -->
+    <div class="bg-white rounded-2xl shadow-card p-4">
+      <h3 class="font-display text-base font-bold mb-1 flex items-center gap-2">
+        <i class="fa-solid fa-cloud-arrow-down text-teal"></i> שימוש בלי קליטה
+      </h3>
+      <p id="offlineStatus" class="text-sm text-navydeep/80 leading-relaxed">בודק…</p>
+      <p class="text-xs text-navydeep/60 mt-2">גרסה <span id="appVersion"></span></p>
+    </div>
+  </section>
+
+  <!-- ---------- TAB 4: רשימות (Lists) ---------- -->
+  <section id="tab-lists" class="tab-panel hidden">
+    <h2 class="font-display text-xl font-bold mb-1 mt-1">רשימות</h2>
+    <p class="text-sm text-navydeep/70 mb-4">מה צריך להכין ומה נשאר לסדר · הסימונים נשמרים במכשיר הזה בלבד</p>
+
+    <div class="bg-white rounded-2xl shadow-card p-4 mb-6 border-2 border-gold/30">
+      <h3 class="font-display text-base font-bold mb-1 flex items-center gap-2 text-gold">
+        <span>📋</span> הזמנות מראש
+      </h3>
+      <p class="text-xs text-navydeep/70 mb-3">כל מה שצריך להזמין לפני הטיסה — מסודר לפי דחיפות</p>
+      <div id="reservationsList" class="flex flex-col gap-2"></div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-card p-4 mb-6">
+      <h3 class="font-display text-base font-bold mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-suitcase-rolling text-terracotta"></i> רשימת אריזה
+      </h3>
+      <div id="packingList" class="flex flex-col gap-1"></div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-card p-4 border-2 border-terracotta/30">
+      <h3 class="font-display text-base font-bold mb-3 flex items-center gap-2 text-terracotta">
+        <span>🔧</span> לאמת ולעדכן באפליקציה לפני הטיסה
+      </h3>
+      <div id="adminChecklist" class="flex flex-col gap-1"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================================================ -->
+<!--  BLOCK: BOTTOM NAVIGATION                                        -->
+<!-- ================================================================ -->
+<nav id="bottomNav" class="fixed bottom-0 inset-x-0 z-50 bg-white shadow-nav" aria-label="ניווט ראשי">
+  <div class="max-w-md mx-auto grid grid-cols-4">
+    <button data-act="tab" data-arg="timeline" class="nav-btn flex flex-col items-center gap-1 py-3 text-navy">
+      <i class="fa-solid fa-map-location-dot text-lg"></i>
+      <span class="text-xs font-semibold">הלו״ז שלנו</span>
+    </button>
+    <button data-act="tab" data-arg="vault" class="nav-btn flex flex-col items-center gap-1 py-3 text-navydeep/60">
+      <i class="fa-solid fa-gem text-lg"></i>
+      <span class="text-xs font-semibold">המלצות</span>
+    </button>
+    <button data-act="tab" data-arg="info" class="nav-btn flex flex-col items-center gap-1 py-3 text-navydeep/60">
+      <i class="fa-solid fa-circle-info text-lg"></i>
+      <span class="text-xs font-semibold">מידע</span>
+    </button>
+    <button data-act="tab" data-arg="lists" class="nav-btn flex flex-col items-center gap-1 py-3 text-navydeep/60">
+      <i class="fa-solid fa-list-check text-lg"></i>
+      <span class="text-xs font-semibold">רשימות</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ================================================================ -->
+<!--  BLOCK: MODALS                                                   -->
+<!-- ================================================================ -->
+<div id="infoModal" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle">
+  <div class="absolute inset-0 bg-navydeep/60" data-act="close"></div>
+  <div class="sheet absolute bottom-0 inset-x-0 bg-cream rounded-t-3xl max-h-[88vh] overflow-y-auto translate-y-full">
+    <div class="sticky top-0 z-10 bg-cream/95 backdrop-blur flex items-center justify-center pt-3 pb-2 relative">
+      <div class="w-10 h-1.5 rounded-full bg-navydeep/20"></div>
+      <button data-act="close" aria-label="סגור"
+        class="absolute left-3 top-1 w-10 h-10 rounded-full bg-navydeep/5 text-navydeep/70 flex items-center justify-center active:bg-navydeep/10 transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div id="infoModalContent" class="max-w-md mx-auto px-5 pb-8"></div>
+  </div>
+</div>
+
+
+<!-- ================================================================ -->
+<!--  SCRIPT: DATA + LOGIC                                            -->
+<!-- ================================================================ -->
+<script>
+/* ---------------------------------------------------------------- */
+/*  TRIP DATA                                                       */
+/*  tripData: one entry per day. A day has "activities", or         */
+/*  "variants" (alternative plans the app lets you switch between). */
+/*  Optional per day: fromHome / toHome route steps.                */
+/*  Prices are written as {{eur:55}} and converted when shown.      */
+/*  "card": true shows a meal as a full card instead of a slim row. */
+/* ---------------------------------------------------------------- */
+const tripData = [
+  {
+    "id": "day1",
+    "dayLabel": "יום ה׳",
+    "dateDisplay": "25.2",
+    "weather": null,
+    "activities": [
+      {
+        "id": "d1-flight",
+        "time": "08:15",
+        "title": "טיסה לרומא",
+        "category": "טיסה",
+        "icon": "fa-plane-departure",
+        "images": [],
+        "locked": true,
+        "mapQuery": "Ben Gurion Airport",
+        "description": "🎓 <strong>הערות מדריך — יום ההגעה:</strong><br>• ההמראה מישראל ב־08:15. בפברואר רומא מאחורי ישראל בשעה אחת, כך שהנחיתה צפויה בסביבות 11:30 שעון רומא — לעדכן לפי כרטיס הטיסה.<br>• השעות בכל האפליקציה הן שעון רומא.<br><br>💑 <strong>רגע רומנטי:</strong> בלי לחץ היום — צהריים טובים, שקיעה מעל העיר, ארוחת ערב רומית וטרווי בלילה."
+      },
+      {
+        "id": "d1-a1",
+        "time": "11:30",
+        "title": "Fiumicino Airport (FCO)",
+        "category": "טיסה",
+        "icon": "fa-plane-arrival",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Fiumicino Airport Rome",
+        "description": "🎓 <strong>הערות מדריך — מהשדה לעיר:</strong><br>• <strong>מונית רשמית — מחיר קבוע {{eur:55}}</strong> לכל מקום בתוך חומות אאורליאנוס (המלון בפנים). המחיר לרכב, כולל מזוודות.<br>• קחו מונית רק מהתור הרשמי מחוץ לטרמינל. אם רישיון המונית מתחיל ב־Roma — חל המחיר הקבוע.<br>• חלופה: רכבת Leonardo Express לתחנת Termini ({{eur:14}} לאדם, 32 דקות), ומשם מונית/מטרו — לזוג עם מזוודות המונית נוחה יותר וכמעט באותו מחיר.<br><br>⚠️ <strong>הנחת עבודה:</strong> הטיסה נוחתת ב־Fiumicino. אם נוחתים ב־Ciampino — המחיר הקבוע משם {{eur:40}}."
+      },
+      {
+        "id": "d1-a2",
+        "time": "12:45",
+        "title": "Circle6 Rome",
+        "category": "לינה",
+        "icon": "fa-bed",
+        "images": [],
+        "locked": true,
+        "mapQuery": "Circle6 Rome Via del Tritone 68",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• צ׳ק־אין מ־14:00 — מגיעים קודם, משאירים מזוודות ויוצאים לצהריים.<br>• לפי אתרי ההזמנות אין ארוחת בוקר חינם במלון — לבדוק מה כלול בהזמנה שלכם.<br>• מס עירוני: {{eur:7.5}} לאדם ללילה במלון 4 כוכבים, משולם במלון — סה״כ {{eur:45}} לזוג ל־3 לילות.<br><br>מלון בוטיק 4 כוכבים במיקום מושלם: 4 דקות הליכה ממזרקת טרווי, 5 דקות מהמדרגות הספרדיות ו־5 דקות מתחנת המטרו Barberini.<br><br>📍 Via del Tritone 68, Roma.<br>🕐 צ׳ק־אין 14:00 · צ׳ק־אאוט 11:00.<br>🚇 Barberini (🔴 קו A) — 5 דקות הליכה.",
+        "nearby": [
+          {
+            "title": "Trevi Fountain",
+            "distance": "4 דקות הליכה",
+            "images": [],
+            "mapQuery": "Trevi Fountain Rome",
+            "description": "המזרקה המפורסמת ברומא. מאז פברואר 2026 הירידה לאגן עצמו בתשלום ({{eur:2}}) בשעות היום; בערב אחרי 22:00 הכניסה חופשית. מתוכנן ביקור לילי בסוף היום הראשון."
+          },
+          {
+            "title": "Spanish Steps",
+            "distance": "5 דקות הליכה",
+            "images": [],
+            "mapQuery": "Spanish Steps Rome",
+            "description": "המדרגות הספרדיות ומזרקת הסירה (Barcaccia) בתחתיתן. בראש המדרגות — מלון Hassler ומסעדת Imàgo, ארוחת המישלן של יום שישי."
+          }
+        ]
+      },
+      {
+        "id": "d1-lunch",
+        "time": "13:15",
+        "title": "צהריים — Colline Emiliane",
+        "category": "ארוחה",
+        "icon": "fa-utensils",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Colline Emiliane Via degli Avignonesi 22 Rome",
+        "description": "📌 3 דקות הליכה מהמלון — אין צורך במונית או במטרו ביום ההגעה.<br><br>מסעדה ותיקה (מאז 1931) של מטבח אמיליה־רומאניה, בניהול משפחת לטיני. הפסטה נעשית בעבודת יד בחדר עם חלון ממש בכניסה. מנות מפורסמות: טורטליני בציר, טליאטלה בראגו וה־giambonetto (עגל מזוגג). במדריך מישלן.<br><br>🕐 צהריים 12:45–14:45 (ג׳–ש׳; ביום ראשון רק צהריים; סגור ב׳).<br>💰 ממוצע כ־{{eur:55}} לאדם (גמברו רוסו).<br>🎫 מומלץ להזמין — המקום קטן (כ־40 מקומות).<br>☎ +39 06 481 7538<br>📍 Via degli Avignonesi 22."
+      },
+      {
+        "id": "d1-a3",
+        "time": "14:45",
+        "title": "צ׳ק־אין וזמן חופשי",
+        "category": "פנאי",
+        "icon": "fa-mug-hot",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Circle6 Rome Via del Tritone 68",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• קמתם מוקדם לטיסה — שעה וחצי של מנוחה במלון לפני שיוצאים לשקיעה."
+      },
+      {
+        "id": "d1-a4",
+        "time": "16:15",
+        "title": "Spanish Steps & Via Condotti",
+        "category": "סיור",
+        "icon": "fa-stairs",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Spanish Steps Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• אסור לשבת על המדרגות (יש קנס) — עולים, מצטלמים וממשיכים.<br>• Via Condotti, רחוב האופנה היוקרתי, יוצא ישר מהמדרגות לכיוון Via del Corso.<br><br>המדרגות הספרדיות עולות מ־Piazza di Spagna אל כנסיית Trinità dei Monti. משם ממשיכים לאורך Viale della Trinità dei Monti אל גבעת הפינצ׳ו לשקיעה.<br><br>⏱ 30–45 דקות.",
+        "rainPlanB": {
+          "title": "הפנתיאון",
+          "description": "המבנה העתיק השמור ביותר ברומא, מקורה כולו — והגשם שנופל דרך הפתח בכיפה הוא חוויה בפני עצמה. פתוח 9:00–19:00 (כניסה אחרונה 18:30), {{eur:7}} לאדם; כדאי להזמין באתר הרשמי.",
+          "mapQuery": "Pantheon Rome"
+        }
+      },
+      {
+        "id": "d1-a5",
+        "time": "17:15",
+        "title": "Pincio Terrace — שקיעה",
+        "category": "שקיעה",
+        "icon": "fa-sun",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Terrazza del Pincio Rome",
+        "description": "💑 <strong>רגע רומנטי:</strong> השקיעה הראשונה ברומא — מרפסת הפינצ׳ו מעל Piazza del Popolo, עם כיפת סנט פיטר באופק.<br><br>🎓 <strong>הערות מדריך:</strong><br>• השקיעה בסוף פברואר בסביבות 17:50 — להגיע רבע שעה לפני.<br>• מרגע שהשמש שוקעת מתקרר מהר — מעיל קל.<br><br>המרפסת בקצה פארק וילה בורגזה. אחרי השקיעה יורדים במדרגות אל Piazza del Popolo וממשיכים ברגל לכיוון הפנתיאון.<br><br>💰 כניסה חופשית.",
+        "rainPlanB": {
+          "title": "הפנתיאון",
+          "description": "במקום שקיעה בחוץ — הפנתיאון לפני הסגירה (כניסה אחרונה 18:30), ומשם 2 דקות לארוחת הערב.",
+          "mapQuery": "Pantheon Rome"
+        }
+      },
+      {
+        "id": "d1-dinner",
+        "time": "20:00",
+        "title": "ערב — Armando al Pantheon",
+        "category": "ארוחה",
+        "icon": "fa-utensils",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Armando al Pantheon Salita de Crescenzi 31 Rome",
+        "description": "📌 כמה צעדים מהפנתיאון — אחרי הארוחה הכיכר המוארת בלילה.<br><br>טרטוריה משפחתית מאז 1961, בדור השלישי. בישול רומי קלאסי — קרבונרה, קאצ׳ו א פפה, אמטריצ׳אנה. מקום שגם הרומאים עצמם אוכלים בו, למרות המיקום התיירותי.<br><br>🕐 ב׳–ו׳ 12:30–15:00, 19:00–23:00; בשבת רק צהריים; סגור בראשון.<br>🎫 <strong>חובה להזמין מראש</strong> — מההזמנות הקשות בעיר. לפי דיווחי מטיילים ההזמנות באתר נפתחות כחודש מראש.<br>☎ +39 06 6880 3034<br>📍 Salita de' Crescenzi 31.",
+        "nearby": [
+          {
+            "title": "Roscioli Salumeria con Cucina",
+            "distance": "כ־15 דקות הליכה, ליד Campo de' Fiori",
+            "images": [],
+            "mapQuery": "Roscioli Salumeria con Cucina Via dei Giubbonari 21 Rome",
+            "description": "מעדנייה, מרתף יין ומטבח בחדר אחד — מהכתובות המפורסמות בעיר לקרבונרה ולגבינות. מומלצת במדריך מישלן.<br><br>🕐 ב׳–ש׳ 12:30–16:00, 19:00–24:00; סגור בראשון.<br>🎫 להזמין מראש.<br>☎ +39 06 687 5287<br>📍 Via dei Giubbonari 21."
+          }
+        ]
+      },
+      {
+        "id": "d1-a6",
+        "time": "22:15",
+        "title": "Trevi Fountain בלילה",
+        "category": "סיור",
+        "icon": "fa-water",
+        "images": [],
+        "locked": false,
+        "optional": true,
+        "mapQuery": "Trevi Fountain Rome",
+        "description": "💑 <strong>רגע רומנטי:</strong> מטבע אחד מעבר לכתף — לפי המסורת זה מבטיח שתחזרו לרומא.<br><br>🎓 <strong>הערות מדריך:</strong><br>• מאז פברואר 2026 הכניסה לאגן המזרקה בתשלום ({{eur:2}}) עד 22:00 — אחרי השעה הזו חופשי, ויש הרבה פחות אנשים.<br>• מהמזרקה למלון 4 דקות הליכה.<br><br>💰 חינם אחרי 22:00."
+      }
+    ]
+  },
+  {
+    "id": "day2",
+    "dayLabel": "יום ו׳",
+    "dateDisplay": "26.2",
+    "weather": null,
+    "activities": [
+      {
+        "id": "d2-a1",
+        "time": "09:00",
+        "title": "Vatican Museums & Sistine Chapel",
+        "category": "מוזיאון",
+        "icon": "fa-landmark",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Vatican Museums entrance Viale Vaticano",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• הכרטיסים נפתחים <strong>60 יום מראש</strong> — לתאריך 26.2 מ־28.12.2026. רק באתר הרשמי tickets.museivaticani.va.<br>• הכרטיסים על שם — להביא דרכון.<br>• בקפלה הסיסטינית אסור לצלם ושומרים על שקט.<br>• כתפיים וברכיים מכוסות (נדרש גם בבזיליקה אחר כך).<br><br>אחד מאוספי האמנות הגדולים בעולם — חדרי רפאל, גלריית המפות, והקפלה הסיסטינית של מיכלאנג׳לו בסוף המסלול.<br><br>🕐 ב׳–ש׳ 8:00–20:00 (כניסה אחרונה 18:00).<br>⏱ כ־3 שעות.<br>💰 {{eur:20}} + {{eur:5}} דמי הזמנה מקוונת = {{eur:25}} לאדם.<br>🚇 Cipro (🔴 קו A) — כ־7 דקות הליכה לכניסה."
+      },
+      {
+        "id": "d2-lunch",
+        "time": "12:15",
+        "title": "צהריים — Pizzarium Bonci",
+        "category": "ארוחה",
+        "icon": "fa-pizza-slice",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Pizzarium Bonci Via della Meloria 43 Rome",
+        "description": "📌 כ־8 דקות הליכה מיציאת המוזיאונים — צהריים מהירים לפני הבזיליקה.<br><br>הפיצרייה ״לפי משקל״ של גבריאלה בונצ׳י, מהשמות הגדולים בפיצה הרומית. קונים ריבועים לפי משקל, עם תוספות עונתיות; אוכלים בעמידה או על השרפרפים בחוץ. גמברו רוסו נתן לה 96/100.<br><br>🕐 כל יום 11:00–22:00.<br>💰 זול — ארוחה מתחת ל־{{eur:20}}.<br>🎫 אין הזמנות; יש תור, הוא זז מהר.<br>📍 Via della Meloria 43."
+      },
+      {
+        "id": "d2-a2",
+        "time": "13:15",
+        "title": "St. Peter's Basilica",
+        "category": "סיור",
+        "icon": "fa-church",
+        "images": [],
+        "locked": false,
+        "mapQuery": "St. Peter's Basilica",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• הכניסה לבזיליקה חופשית, אבל יש בדיקה ביטחונית ותור בכיכר.<br>• קוד לבוש: כתפיים וברכיים מכוסות.<br>• העלייה לכיפה בתשלום נפרד — הנוף מלמעלה על כל רומא.<br><br>הכנסייה הגדולה בעולם הנוצרי, עם הפייטה של מיכלאנג׳לו מימין לכניסה והכיפה שתכנן.<br><br>⏱ כשעה, יותר עם הכיפה.<br>💰 כניסה חופשית."
+      },
+      {
+        "id": "d2-a3",
+        "time": "14:45",
+        "title": "Castel Sant'Angelo & Ponte Sant'Angelo",
+        "category": "סיור",
+        "icon": "fa-chess-rook",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Ponte Sant'Angelo Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• הולכים לאורך Via della Conciliazione מהכיכר אל המצודה.<br>• חוצים את גשר המלאכים (פסלי המלאכים לפי תכנון ברניני) — הצילום עם המצודה ברקע הוא הקלאסי.<br><br>מאוזוליאום של הקיסר אדריאנוס שהפך למצודת האפיפיורים. אפשר להסתפק בחוץ ובגשר; הכניסה אופציונלית."
+      },
+      {
+        "id": "d2-a4",
+        "time": "15:30",
+        "title": "Piazza Navona",
+        "category": "סיור",
+        "icon": "fa-monument",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Piazza Navona Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• מזרקת ארבעת הנהרות של ברניני במרכז הכיכר.<br>• בדרך חזרה למלון עוברים ליד הפנתיאון ומזרקת טרווי.<br><br>הכיכר הבארוקית היפה ברומא, בנויה על תוואי אצטדיון רומי עתיק — ומכאן הצורה המוארכת.",
+        "nearby": [
+          {
+            "title": "Sant'Eustachio Il Caffè",
+            "distance": "5 דקות הליכה",
+            "images": [],
+            "mapQuery": "Sant'Eustachio Il Caffè Rome",
+            "description": "בית קפה ותיק בין נבונה לפנתיאון, מפורסם באספרסו שלו. עוצרים ליד הבר, כמו הרומאים."
+          },
+          {
+            "title": "Giolitti",
+            "distance": "כ־8 דקות הליכה, ליד הפנתיאון",
+            "images": [],
+            "mapQuery": "Giolitti Rome Via degli Uffici del Vicario",
+            "description": "גלידריה היסטורית ליד הפנתיאון — גלידה בדרך חזרה למלון."
+          }
+        ]
+      },
+      {
+        "id": "d2-a5",
+        "time": "16:45",
+        "title": "חזרה למלון — זמן חופשי",
+        "category": "פנאי",
+        "icon": "fa-spa",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Circle6 Rome Via del Tritone 68",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• יום ארוך ברגליים מאחוריכם — זמן לנוח ולהתלבש לערב המישלן."
+      },
+      {
+        "id": "d2-dinner",
+        "time": "20:00",
+        "title": "ערב מישלן — Imàgo",
+        "category": "ארוחה",
+        "card": true,
+        "icon": "fa-star",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Imàgo Hotel Hassler Piazza Trinità dei Monti 6 Rome",
+        "description": "💑 <strong>רגע רומנטי:</strong> ארוחת טעימות בקומה העליונה של מלון Hassler, בראש המדרגות הספרדיות — כל רומא המוארת מעבר לחלון.<br><br>🎓 <strong>למה דווקא Imàgo:</strong><br>• כוכב מישלן במדריך 2027 (פורסם בנובמבר 2026).<br>• מסעדה פנורמית — הנוף הוא חלק מהארוחה.<br>• 8–10 דקות הליכה מהמלון, בלי מונית.<br><br>השף Andrea Antonini מגיש שני תפריטי טעימות של מטבח איטלקי עכשווי.<br><br>🕐 ג׳–ש׳ 19:00–22:30; סגור בראשון ובשני.<br>💰 לא מצאתי מחירי תפריט עדכניים — לשאול בעת ההזמנה.<br>🎫 המסעדה מנהלת את ההזמנות בעצמה — טלפון או אתר imagorestaurant.it. להזמין כמה שיותר מוקדם ולציין שזו ארוחה חגיגית.<br>☎ +39 06 6993 4726<br>📍 Piazza Trinità dei Monti 6.",
+        "nearby": [
+          {
+            "title": "Orma Roma ⭐⭐",
+            "distance": "כ־13 דקות הליכה מהמלון",
+            "images": [],
+            "mapQuery": "Orma Roma Via Boncompagni 31",
+            "description": "<strong>עלתה לשני כוכבי מישלן במדריך 2027</strong> — הכי ״חמה״ ברומא כרגע. השף Roy Caceres משלב מטבח קולומביאני ואיטלקי; מישלן מתייג אותה כרומנטית.<br><br>🕐 ארוחות ערב ג׳–ש׳.<br>💰 לא מצאתי מחירים עדכניים אחרי הכוכב השני.<br>🎫 אחרי הכוכב השני צפוי ביקוש גבוה — להזמין מוקדם.<br>📍 Via Boncompagni 31, ליד Via Veneto."
+          },
+          {
+            "title": "La Pergola ⭐⭐⭐",
+            "distance": "מונית כ־20 דקות (Monte Mario)",
+            "images": [],
+            "mapQuery": "La Pergola Rome Cavalieri",
+            "description": "<strong>המסעדה היחידה ברומא עם שלושה כוכבים</strong> — השף Heinz Beck, בקומה העליונה של מלון Rome Cavalieri, עם נוף על כל העיר וכיפת סנט פיטר.<br><br>🕐 ערב בלבד, ג׳–ש׳ 19:30–23:30.<br>💰 תפריטי טעימות {{eur:290}} (7 מנות) / {{eur:350}} (10 מנות), בלי משקאות.<br>🎫 <strong>לשישי ממליצים 3–4 חודשים מראש</strong> — כלומר כבר עכשיו. דרך משרד ההזמנות של המלון.<br>⚠️ ז׳קט חובה לגברים."
+          },
+          {
+            "title": "Il Pagliaccio ⭐⭐",
+            "distance": "כ־20 דקות הליכה, ליד Campo de' Fiori",
+            "images": [],
+            "mapQuery": "Il Pagliaccio Via dei Banchi Vecchi Rome",
+            "description": "שני כוכבי מישלן, השף Anthony Genovese. חדר מינימליסטי במרכז ההיסטורי.<br><br>🕐 ערב ג׳–ש׳ (כניסה 19:30–21:00).<br>💰 תפריטים {{eur:180-330}}.<br>☎ +39 06 68 80 95 95"
+          },
+          {
+            "title": "Acquolina ⭐⭐",
+            "distance": "כ־15 דקות הליכה, ליד Piazza del Popolo",
+            "images": [],
+            "mapQuery": "Acquolina Roma The First Arte",
+            "description": "שני כוכבי מישלן, מטבח ים. במלון The First Roma Arte.<br><br>🕐 ג׳–ש׳ 19:00–21:00.<br>💰 תפריטים {{eur:240}} (ים) / {{eur:280}} (ים ובשר).<br>🎫 הזמנה רק דרך האתר acquolinaristorante.it."
+          }
+        ]
+      },
+      {
+        "id": "d2-a6",
+        "time": "22:30",
+        "title": "המדרגות הספרדיות בלילה",
+        "category": "סיור",
+        "icon": "fa-moon",
+        "images": [],
+        "locked": false,
+        "optional": true,
+        "mapQuery": "Spanish Steps Rome",
+        "description": "💑 <strong>רגע רומנטי:</strong> יוצאים מהמסעדה ישר לראש המדרגות — העיר המוארת למטה, והליכה של 5 דקות חזרה למלון."
+      }
+    ],
+    "fromHome": [
+      {
+        "mode": "walk",
+        "text": "הליכה לתחנת Barberini",
+        "icon": "fa-person-walking",
+        "duration": "5 ד׳"
+      },
+      {
+        "mode": "metro",
+        "text": "מטרו 🔴A מ־Barberini ל־Cipro",
+        "icon": "fa-train-subway",
+        "duration": "10 ד׳",
+        "detail": "5 תחנות"
+      },
+      {
+        "mode": "walk",
+        "text": "הליכה לכניסת המוזיאונים",
+        "icon": "fa-person-walking",
+        "duration": "7 ד׳"
+      }
+    ],
+    "toHome": [
+      {
+        "mode": "walk",
+        "text": "הליכה במורד המדרגות הספרדיות למלון",
+        "icon": "fa-person-walking",
+        "duration": "5 ד׳"
+      }
+    ]
+  },
+  {
+    "id": "day3",
+    "dayLabel": "שבת",
+    "dateDisplay": "27.2",
+    "weather": null,
+    "activities": [
+      {
+        "id": "d3-a1",
+        "time": "09:00",
+        "title": "Colosseum, Roman Forum & Palatine",
+        "category": "סיור",
+        "icon": "fa-landmark-dome",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Colosseum Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• הכרטיסים נפתחים <strong>30 יום מראש</strong> — לתאריך 27.2 מ־28.1.2027, באתר הרשמי ticketing.colosseo.it בלבד. השעה המדויקת משתנה; נגמרים מהר.<br>• הכרטיסים על שם — להביא דרכון.<br>• הכרטיס הרגיל כולל גם את הפורום הרומי ואת הפלטין, תקף 24 שעות.<br>• 9:00 = לפני רוב הקבוצות.<br><br>הקולוסיאום, ומשם הליכה בפורום ועלייה לגבעת הפלטין — הלב של רומא העתיקה.<br><br>⏱ 3–3.5 שעות לשלושת האתרים.<br>💰 רגיל {{eur:18}} ({{eur:16}} + {{eur:2}} הזמנה); כרטיסי Full Experience (זירה / מחילות) יקרים יותר.<br>🚇 Colosseo (🔵 קו B).<br><br>❌ <strong>הימנעו:</strong><br>• אתרים לא רשמיים שמוכרים ״כרטיסים לקולוסיאום״ במחירים מנופחים — רק ticketing.colosseo.it.",
+        "rainPlanB": {
+          "title": "לקצר את הפורום",
+          "description": "הקולוסיאום עצמו בסדר גם בגשם; הפורום והפלטין פתוחים לגמרי. בגשם חזק — לקצר את הפורום ולעבור מוקדם לצהריים במונטי (8 דקות הליכה).",
+          "mapQuery": "La Taverna dei Fori Imperiali Rome"
+        }
+      },
+      {
+        "id": "d3-lunch",
+        "time": "13:00",
+        "title": "צהריים — La Taverna dei Fori Imperiali",
+        "category": "ארוחה",
+        "icon": "fa-utensils",
+        "images": [],
+        "locked": false,
+        "mapQuery": "La Taverna dei Fori Imperiali Via della Madonna dei Monti 9 Rome",
+        "description": "📌 כ־8 דקות הליכה מהפורום, בשכונת מונטי.<br><br>טרטוריה משפחתית עם בישול רומי ביתי — פסטות, קרבונרה, סלטימבוקה. שווה לשמוע את המנות המיוחדות של היום.<br><br>🕐 ד׳–ב׳ 12:30–15:00, 19:30–22:30; סגור בשלישי.<br>🎫 להזמין מראש.<br>☎ +39 06 679 8643<br>📍 Via della Madonna dei Monti 9."
+      },
+      {
+        "id": "d3-a2",
+        "time": "14:30",
+        "title": "Monti → Piazza Venezia → Campo de' Fiori",
+        "category": "סיור",
+        "icon": "fa-person-walking",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Campo de' Fiori Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• מסלול הליכה רגוע: סמטאות מונטי, Piazza Venezia עם אנדרטת ויטוריאנו הלבנה, ומשם ל־Campo de' Fiori.<br>• אין כאן אתר ״חובה״ — זה הזמן החופשי של היום. אפשר לעצור לקפה או לגלידה מתי שמתחשק.<br><br>⏱ כשעה וחצי בקצב נינוח.",
+        "rainPlanB": {
+          "title": "הפנתיאון",
+          "description": "מקורה, 10 דקות הליכה מ־Piazza Venezia. {{eur:7}} לאדם, 9:00–19:00; כדאי להזמין באתר הרשמי.",
+          "mapQuery": "Pantheon Rome"
+        }
+      },
+      {
+        "id": "d3-a3",
+        "time": "16:00",
+        "title": "Trastevere",
+        "category": "סיור",
+        "icon": "fa-house-chimney",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Piazza di Santa Maria in Trastevere",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• חוצים את הטיבר ב־Ponte Sisto, גשר להולכי רגל.<br>• סמטאות מרוצפות, קיסוס על הקירות — השכונה הכי ציורית ברומא.<br>• Piazza di Santa Maria in Trastevere והבזיליקה עם פסיפסי הזהב.<br><br>⏱ כשעה של שיטוט לפני העלייה לג׳ניקולו."
+      },
+      {
+        "id": "d3-a4",
+        "time": "17:15",
+        "title": "Gianicolo Terrace — שקיעה",
+        "category": "שקיעה",
+        "icon": "fa-sun",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Terrazza del Gianicolo Rome",
+        "description": "💑 <strong>רגע רומנטי:</strong> התצפית הכי יפה על רומא — כל הכיפות והגגות לרגליכם בזמן שהשמש שוקעת.<br><br>🎓 <strong>הערות מדריך:</strong><br>• השקיעה בסביבות 17:55. העלייה מטרסטוורה ברגל כ־20 דקות (מדרגות ושבילים); אפשר גם מונית קצרה.<br>• מכאן יורדים ישר לארוחת הערב ב־Via Garibaldi.<br><br>💰 כניסה חופשית.",
+        "rainPlanB": {
+          "title": "Basilica di Santa Maria in Trastevere",
+          "description": "מקורה, בלב טרסטוורה, עם פסיפסי זהב מימי הביניים — ומשם 10 דקות הליכה לארוחת הערב.",
+          "mapQuery": "Basilica di Santa Maria in Trastevere"
+        }
+      },
+      {
+        "id": "d3-dinner",
+        "time": "19:45",
+        "title": "ערב — Antica Pesa",
+        "category": "ארוחה",
+        "icon": "fa-utensils",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Antica Pesa Via Garibaldi 18 Rome",
+        "description": "📌 למרגלות הג׳ניקולו — יורדים מהשקיעה ישר לשולחן.<br><br>מסעדה של משפחת פנלה מאז 1922, במחסן תבואה היסטורי של מדינת האפיפיור. מטבח רומי מוקפד, רשימת יין גדולה, אווירה אינטימית. מומלצת במדריך מישלן.<br><br>🕐 ערב 19:30–23:00; סגור בראשון.<br>🎫 המסעדה מנהלת את ההזמנות בעצמה — להזמין מראש, בסופ״ש מתמלא.<br>📍 Via Garibaldi 18.",
+        "nearby": [
+          {
+            "title": "Da Enzo al 29",
+            "distance": "כ־10 דקות הליכה",
+            "images": [],
+            "mapQuery": "Da Enzo al 29 Via dei Vascellari 29 Rome",
+            "description": "טרטוריה קטנה ואהובה בטרסטוורה, בישול רומי פשוט ומעולה.<br><br>🕐 ב׳–ש׳ 12:30–15:00, 19:30–23:00; סגור בראשון.<br>📍 Via dei Vascellari 29."
+          },
+          {
+            "title": "Roma Sparita",
+            "distance": "כ־10 דקות הליכה",
+            "images": [],
+            "mapQuery": "Roma Sparita Piazza di Santa Cecilia Rome",
+            "description": "טרטוריה על כיכר שקטה בטרסטוורה.<br><br>🕐 ג׳–ש׳ 12:30–14:30, 19:30–23:00; ראשון צהריים בלבד; סגור בשני.<br>📍 Piazza di Santa Cecilia 24."
+          }
+        ]
+      }
+    ],
+    "fromHome": [
+      {
+        "mode": "uber",
+        "text": "מונית מהמלון לקולוסיאום",
+        "icon": "fa-car",
+        "duration": "12 ד׳",
+        "detail": "או מטרו 🔴A ל־Termini ו־🔵B ל־Colosseo"
+      }
+    ],
+    "toHome": [
+      {
+        "mode": "uber",
+        "text": "מונית מ־Via Garibaldi חזרה למלון",
+        "icon": "fa-car",
+        "duration": "15 ד׳"
+      }
+    ]
+  },
+  {
+    "id": "day4",
+    "dayLabel": "יום א׳",
+    "dateDisplay": "28.2",
+    "weather": null,
+    "activities": [
+      {
+        "id": "d4-a1",
+        "time": "06:30",
+        "title": "צ׳ק־אאוט ומונית לשדה",
+        "category": "נסיעה",
+        "icon": "fa-car",
+        "images": [],
+        "locked": false,
+        "mapQuery": "Fiumicino Airport Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• להזמין את המונית דרך הקבלה ערב קודם.<br>• המחיר הקבוע {{eur:55}} חל גם בכיוון הזה (מתוך החומות לשדה).<br>• לסגור את המס העירוני בקבלה אם לא שולם.<br><br>⏱ כ־40–50 דקות לשדה."
+      },
+      {
+        "id": "d4-a2",
+        "time": "07:15",
+        "title": "Fiumicino — טיסה הביתה ב־10:15",
+        "category": "טיסה",
+        "icon": "fa-plane-departure",
+        "images": [],
+        "locked": true,
+        "mapQuery": "Fiumicino Airport Rome",
+        "description": "🎓 <strong>הערות מדריך:</strong><br>• בטיסות לישראל נהוג להגיע כ־3 שעות לפני ההמראה בגלל הבדיקות הביטחוניות — לבדוק את ההנחיה של חברת התעופה.<br>• קפה וארוחת בוקר — בשדה, אחרי הבידוק.<br><br>💑 <strong>רגע רומנטי:</strong> זרקתם מטבע בטרווי — אז זו רק הפעם הראשונה."
+      }
+    ]
+  }
+];
+
+/* ---------------------------------------------------------------- */
+/*  ROUTES between consecutive activities: "fromId→toId"            */
+/*  Walking times were estimated from a map, not walked.            */
+/* ---------------------------------------------------------------- */
+const routeData = {
+  "d1-a1→d1-a2": [
+    { "mode": "uber", "text": "מונית רשמית מהשדה למלון", "icon": "fa-car", "duration": "45 ד׳", "detail": "{{eur:55}} מחיר קבוע" }
+  ],
+  "d1-a2→d1-lunch": [
+    { "mode": "walk", "text": "הליכה ל־Via degli Avignonesi", "icon": "fa-person-walking", "duration": "3 ד׳", "detail": "~200 מ׳" }
+  ],
+  "d1-lunch→d1-a3": [
+    { "mode": "walk", "text": "חזרה למלון", "icon": "fa-person-walking", "duration": "3 ד׳" }
+  ],
+  "d1-a3→d1-a4": [
+    { "mode": "walk", "text": "הליכה ל־Piazza di Spagna", "icon": "fa-person-walking", "duration": "5 ד׳" }
+  ],
+  "d1-a4→d1-a5": [
+    { "mode": "walk", "text": "לאורך Viale della Trinità dei Monti אל הפינצ׳ו", "icon": "fa-person-walking", "duration": "15 ד׳", "detail": "~1 ק״מ" }
+  ],
+  "d1-a5→d1-dinner": [
+    { "mode": "walk", "text": "ירידה ל־Piazza del Popolo ולאורך Via del Corso", "icon": "fa-person-walking", "duration": "25 ד׳", "detail": "~2 ק״מ, עם עצירה לאפריטיבו" }
+  ],
+  "d1-dinner→d1-a6": [
+    { "mode": "walk", "text": "הליכה מהפנתיאון לטרווי", "icon": "fa-person-walking", "duration": "10 ד׳", "detail": "~700 מ׳" }
+  ],
+  "d2-a1→d2-lunch": [
+    { "mode": "walk", "text": "הליכה ל־Via della Meloria", "icon": "fa-person-walking", "duration": "8 ד׳" }
+  ],
+  "d2-lunch→d2-a2": [
+    { "mode": "walk", "text": "לאורך חומות הוותיקן לכיכר סנט פיטר", "icon": "fa-person-walking", "duration": "20 ד׳", "detail": "~1.3 ק״מ" }
+  ],
+  "d2-a2→d2-a3": [
+    { "mode": "walk", "text": "לאורך Via della Conciliazione", "icon": "fa-person-walking", "duration": "10 ד׳", "detail": "~800 מ׳" }
+  ],
+  "d2-a3→d2-a4": [
+    { "mode": "walk", "text": "חציית הגשר והליכה לנבונה", "icon": "fa-person-walking", "duration": "12 ד׳", "detail": "~900 מ׳" }
+  ],
+  "d2-a4→d2-a5": [
+    { "mode": "walk", "text": "דרך הפנתיאון וטרווי למלון", "icon": "fa-person-walking", "duration": "20 ד׳", "detail": "~1.4 ק״מ" }
+  ],
+  "d2-a5→d2-dinner": [
+    { "mode": "walk", "text": "עלייה במדרגות הספרדיות למלון Hassler", "icon": "fa-person-walking", "duration": "10 ד׳" }
+  ],
+  "d2-dinner→d2-a6": [
+    { "mode": "same", "text": "יוצאים מהמלון — המדרגות ממש מול", "icon": "fa-person-walking", "duration": "1 ד׳" }
+  ],
+  "d3-a1→d3-lunch": [
+    { "mode": "walk", "text": "מיציאת הפורום ל־Via della Madonna dei Monti", "icon": "fa-person-walking", "duration": "8 ד׳" }
+  ],
+  "d3-a2→d3-a3": [
+    { "mode": "walk", "text": "חציית Ponte Sisto לטרסטוורה", "icon": "fa-person-walking", "duration": "10 ד׳" }
+  ],
+  "d3-a3→d3-a4": [
+    { "mode": "walk", "text": "עלייה לג׳ניקולו", "icon": "fa-person-walking", "duration": "20 ד׳", "detail": "עלייה; או מונית ~5 ד׳" }
+  ],
+  "d3-a4→d3-dinner": [
+    { "mode": "walk", "text": "ירידה ב־Via Garibaldi", "icon": "fa-person-walking", "duration": "12 ד׳" }
+  ],
+  "d4-a1→d4-a2": [
+    { "mode": "uber", "text": "מונית לשדה Fiumicino", "icon": "fa-car", "duration": "45 ד׳", "detail": "{{eur:55}} מחיר קבוע" }
+  ]
+};
+
+/* ---------------------------------------------------------------- */
+/*  RECOMMENDATIONS — "group": food | rain | info                  */
+/*  ("info" items appear as practical guides in the Info tab)       */
+/* ---------------------------------------------------------------- */
+const vaultData = [
+  {
+    "group": "food",
+    "title": "Orma Roma ⭐⭐",
+    "subtitle": "שני כוכבי מישלן חדשים (2027), קולומביה פוגשת איטליה",
+    "icon": "fa-star",
+    "images": [],
+    "mapQuery": "Orma Roma Via Boncompagni 31",
+    "description": "השף Roy Caceres קיבל את הכוכב השני במדריך מישלן 2027. מטבח אישי שמשלב השפעות קולומביאניות ואיטלקיות, שני תפריטי טעימות. מישלן מתייג את המקום כרומנטי. חלופה ראשונה לערב המישלן של שישי אם Imàgo מלאה.<br><br>🕐 ארוחות ערב ג׳–ש׳.<br>🎫 להזמין מוקדם — אחרי כוכב שני הביקוש קופץ.<br>📍 Via Boncompagni 31 — כ־13 דקות הליכה מהמלון."
+  },
+  {
+    "group": "food",
+    "title": "La Pergola ⭐⭐⭐",
+    "subtitle": "שלושת הכוכבים היחידים ברומא, נוף על כל העיר",
+    "icon": "fa-star",
+    "images": [],
+    "mapQuery": "La Pergola Rome Cavalieri",
+    "description": "השף Heinz Beck, בקומה העליונה של מלון Rome Cavalieri על גבעת Monte Mario. החוויה הקולינרית הגבוהה ביותר בעיר.<br><br>🕐 ערב בלבד, ג׳–ש׳ 19:30–23:30. סגור 3 שבועות בינואר.<br>💰 {{eur:290}} (7 מנות) / {{eur:350}} (10 מנות), בלי משקאות.<br>🎫 לשישי/שבת ממליצים 3–4 חודשים מראש.<br>🚗 מונית כ־20 דקות מהמלון.<br><br>⚠️ <strong>קוד לבוש:</strong> ז׳קט חובה לגברים."
+  },
+  {
+    "group": "food",
+    "title": "Il Pagliaccio ⭐⭐",
+    "subtitle": "שני כוכבים, השף Anthony Genovese",
+    "icon": "fa-star",
+    "images": [],
+    "mapQuery": "Il Pagliaccio Via dei Banchi Vecchi Rome",
+    "description": "מסעדת טעימות בחדר מינימליסטי במרכז ההיסטורי, ליד Campo de' Fiori.<br><br>🕐 ערב ג׳–ש׳; גם צהריים בשבת.<br>💰 {{eur:180-330}} לפי התפריט.<br>☎ +39 06 68 80 95 95"
+  },
+  {
+    "group": "food",
+    "title": "Acquolina ⭐⭐",
+    "subtitle": "שני כוכבים, מטבח ים",
+    "icon": "fa-star",
+    "images": [],
+    "mapQuery": "Acquolina Roma The First Arte",
+    "description": "במלון The First Roma Arte, ליד Piazza del Popolo. חדר בגווני כחול עמוק.<br><br>🕐 ג׳–ש׳ 19:00–21:00.<br>💰 {{eur:240}} (ים) / {{eur:280}} (ים ובשר), בלי משקאות.<br>🎫 הזמנה רק דרך האתר acquolinaristorante.it."
+  },
+  {
+    "group": "food",
+    "title": "Roscioli Salumeria con Cucina",
+    "subtitle": "מעדנייה, יין וקרבונרה מפורסמת",
+    "icon": "fa-wine-glass",
+    "images": [],
+    "mapQuery": "Roscioli Salumeria con Cucina Via dei Giubbonari 21 Rome",
+    "description": "מהכתובות הכי מוכרות ברומא לפסטה רומית, גבינות ונקניקים, עם רשימת יין גדולה. מומלצת במדריך מישלן.<br><br>🕐 ב׳–ש׳ 12:30–16:00, 19:00–24:00; סגור בראשון.<br>🎫 להזמין מראש.<br>☎ +39 06 687 5287<br>📍 Via dei Giubbonari 21, ליד Campo de' Fiori."
+  },
+  {
+    "group": "food",
+    "title": "Da Enzo al 29",
+    "subtitle": "טרטוריה קטנה ואהובה בטרסטוורה",
+    "icon": "fa-utensils",
+    "images": [],
+    "mapQuery": "Da Enzo al 29 Via dei Vascellari 29 Rome",
+    "description": "בישול רומי פשוט ומדויק בשכונה הציורית של העיר.<br><br>🕐 ב׳–ש׳ 12:30–15:00, 19:30–23:00; סגור בראשון.<br>📍 Via dei Vascellari 29."
+  },
+  {
+    "group": "rain",
+    "title": "Galleria Borghese",
+    "subtitle": "ברניני וקאראווג׳ו בווילה — הזמנה מראש חובה",
+    "icon": "fa-palette",
+    "images": [],
+    "mapQuery": "Galleria Borghese Rome",
+    "description": "מהגלריות היפות בעולם: פסלי ברניני (אפולו ודפנה) וציורי קאראווג׳ו, בתוך וילה בפארק בורגזה. כ־20 דקות הליכה מהמלון.<br><br>🕐 ג׳–א׳ 9:00–19:00, סגור בשני. כניסה במשבצות של שעתיים: 9, 11, 13, 15, 17.<br>💰 {{eur:18}} ({{eur:16}} + {{eur:2}} הזמנה); המשבצת האחרונה זולה יותר.<br>🎫 <strong>הזמנה מראש חובה</strong> — אין מכירה במקום.<br><br>💡 משבצת 9:00 היא השקטה ביותר."
+  },
+  {
+    "group": "rain",
+    "title": "Pantheon",
+    "subtitle": "מקדש רומי בן 1,900 שנה, מקורה כולו",
+    "icon": "fa-landmark",
+    "images": [],
+    "mapQuery": "Pantheon Rome",
+    "description": "המבנה העתיק השמור ביותר ברומא, עם הכיפה והפתח העגול בראשה. 15 דקות הליכה מהמלון.<br><br>🕐 כל יום 9:00–19:00 (כניסה אחרונה 18:30).<br>💰 {{eur:7}} לאדם (מיולי 2026).<br>🎫 הכרטיסים על שם; כדאי להזמין באתר הרשמי של Musei Italiani."
+  },
+  {
+    "group": "info",
+    "title": "✈️ מהשדה למלון ובחזרה",
+    "subtitle": "מונית במחיר קבוע {{eur:55}}",
+    "icon": "fa-taxi",
+    "images": [],
+    "mapQuery": "Fiumicino Airport taxi rank",
+    "description": "<strong>🚕 מונית רשמית:</strong> מחיר קבוע {{eur:55}} לרכב בין Fiumicino לכל מקום בתוך חומות אאורליאנוס, בשני הכיוונים, כולל מזוודות. מ־Ciampino {{eur:40}}.<br>• רק מהתור הרשמי מחוץ לטרמינל.<br>• רישיון שמתחיל ב־Roma = המחיר הקבוע חל.<br><br><strong>🚆 Leonardo Express:</strong> {{eur:14}} לאדם, 32 דקות ללא עצירות ל־Termini.<br><br>❌ <strong>הימנעו:</strong><br>• נהגים שמציעים הסעה בתוך הטרמינל."
+  },
+  {
+    "group": "info",
+    "title": "💶 כסף ומס עירוני",
+    "subtitle": "אירו; מס עירוני משולם במלון",
+    "icon": "fa-euro-sign",
+    "images": [],
+    "mapQuery": "Via del Tritone Rome",
+    "description": "<strong>💳 תשלום:</strong> כרטיס אשראי מתקבל ברוב המקומות; גם השערים במטרו מקבלים כרטיס ללא מגע.<br><br><strong>🏨 מס עירוני:</strong> {{eur:7.5}} לאדם ללילה במלון 4 כוכבים, משולם ישירות במלון — {{eur:45}} לזוג ל־3 לילות.<br><br><strong>⛲ טרווי:</strong> {{eur:2}} לאגן המזרקה עד 22:00; מהכיכר מעל — תמיד חופשי."
+  },
+  {
+    "group": "info",
+    "title": "☎️ מספרי חירום ושגרירות",
+    "subtitle": "112, שגרירות ישראל ברומא",
+    "icon": "fa-triangle-exclamation",
+    "images": [],
+    "mapQuery": "Embassy of Israel Via Michele Mercati 14 Rome",
+    "description": "<strong>🚨 חירום:</strong><br>• מספר חירום אירופי: <strong>112</strong><br>• משטרה: <strong>113</strong><br>• אמבולנס: <strong>118</strong><br>• כבאות: <strong>115</strong><br><br>🇮🇱 <strong>שגרירות ישראל ברומא:</strong><br>• טלפון: +39 06 3619 8500<br>• Via Michele Mercati 14, Roma<br><br>📱 <strong>אפליקציות להוריד:</strong><br>• <strong>Google Maps</strong> — להוריד את מפת רומא לשימוש בלי קליטה<br>• <strong>FREENOW</strong> או <strong>itTaxi</strong> — הזמנת מוניות"
+  }
+];
+
+const toolkitInfo = [
+  {
+    "icon": "fa-train-subway",
+    "color": "navy",
+    "title": "תחבורה ציבורית",
+    "text": "במטרו של רומא שלושה קווים: 🔴A (עובר ב־Barberini ליד המלון, וב־Cipro ליד הוותיקן), 🔵B (Termini, Colosseo) ו־🟢C. משלמים בשער עם כרטיס אשראי ללא מגע.<div class='flex flex-col gap-2 mt-3'><a href='https://www.atac.roma.it' target='_blank' rel='noopener' class='flex w-full items-center justify-center gap-2 py-3 rounded-xl bg-navy text-cream text-sm font-semibold active:scale-[.98] transition'><i class='fa-solid fa-train-subway'></i> ATAC — התחבורה של רומא</a></div>"
+  },
+  {
+    "icon": "fa-triangle-exclamation",
+    "color": "terracotta",
+    "title": "מספרי חירום",
+    "text": "חירום — 112 · אמבולנס — 118"
+  },
+  {
+    "icon": "fa-coins",
+    "color": "gold",
+    "title": "מטבע",
+    "text": "אירו (EUR)"
+  },
+  {
+    "icon": "fa-wifi",
+    "color": "teal",
+    "title": "סים / אינטרנט",
+    "text": "מומלץ eSIM או חבילת נדידה לפני הנחיתה"
+  },
+  {
+    "icon": "fa-plug",
+    "color": "navy",
+    "title": "חשמל",
+    "text": "230V; שקעים איטלקיים (סוג F/L) — להביא מתאם"
+  }
+];
+
+const packingItems = [
+  "דרכונים + הדפסה/צילום של כל ההזמנות",
+  "כרטיסי הכניסה בטלפון (וותיקן, קולוסיאום) — על שם, כמו בדרכון",
+  "מעיל קל ושכבות — סוף פברואר: ימים נעימים, ערבים קרים",
+  "מטרייה קטנה",
+  "נעליים נוחות להליכה על אבני ריצוף",
+  "בגדים לערב המישלן (ב־La Pergola ז׳קט חובה)",
+  "צעיף/בגד שמכסה כתפיים וברכיים לוותיקן",
+  "מתאם לשקע איטלקי + מטען נייד",
+  "תרופות אישיות"
+];
+
+const adminChecklistItems = [
+  "לעדכן שעת נחיתה ושדה (Fiumicino / Ciampino) לפי כרטיס הטיסה — כרגע הערכה: 11:30 ב־Fiumicino",
+  "לשאול את Circle6 אם אפשר להשאיר מזוודות לפני 14:00 ואם ארוחת בוקר כלולה בהזמנה",
+  "לאשר מול Imàgo שהמסעדה פתוחה ב־26.2 ולברר מחירי תפריטי טעימות (לא מצאתי)",
+  "Armando al Pantheon: המקורות סותרים לגבי שעת הפתיחה בערב (18:00/19:00) — לבדוק באתר",
+  "לבדוק שעות הכרטיס לטרווי (מקורות שונים: 9:00–22:00 כל יום / 11:30–22:00 בימי חול)",
+  "לבדוק שעת שקיעה מדויקת ל־25.2 ול־27.2",
+  "לאמת באפליקציית מפות את זמני ההליכה במסלולים (נכתבו לפי מפה, לא נבדקו בשטח)",
+  "להחליף את אריחי האייקון בתמונות אמיתיות"
+];
+
+const reservationsData = [
+  {
+    "id": "res-now",
+    "title": "1️⃣ עכשיו — עד סוף נובמבר 2026",
+    "subtitle": "ערב המישלן של יום שישי 26.2",
+    "color": "terracotta",
+    "items": [
+      { "text": "⭐ Imàgo לשישי 26.2, 20:00 — בטלפון +39 06 6993 4726 או באתר. לא מצאתי חלון הזמנות רשמי, לכן כבר עכשיו", "link": "https://www.imagorestaurant.it" },
+      { "text": "⭐⭐ חלופה: Orma Roma — אם Imàgo מלאה", "link": "https://www.ormaroma.it" },
+      { "text": "⭐⭐⭐ אם רוצים את La Pergola במקום — לשישי ממליצים 3–4 חודשים מראש, כלומר כבר עכשיו", "link": "https://romecavalieri.com" }
+    ]
+  },
+  {
+    "id": "res-60",
+    "title": "2️⃣ 28 בדצמבר 2026 — 60 יום לפני",
+    "subtitle": "כרטיסי הוותיקן ל־26.2 נפתחים",
+    "color": "gold",
+    "items": [
+      { "text": "🏛️ מוזיאוני הוותיקן, 26.2 בשעה 9:00 — {{eur:25}} לאדם, על שם", "link": "https://tickets.museivaticani.va" }
+    ]
+  },
+  {
+    "id": "res-month",
+    "title": "3️⃣ סוף ינואר 2027 — חודש לפני",
+    "subtitle": "הקולוסיאום ומסעדות הערב",
+    "color": "teal",
+    "items": [
+      { "text": "🏟️ קולוסיאום, 27.2 בשעה 9:00 — נפתח ב־28.1.2027, רק באתר הרשמי. להיכנס בבוקר ולהזמין מיד", "link": "https://ticketing.colosseo.it" },
+      { "text": "🍝 Armando al Pantheon — 25.2 בשעה 20:00 (לפי מטיילים נפתח כחודש מראש) · +39 06 6880 3034", "link": null },
+      { "text": "🍷 Antica Pesa — 27.2 בשעה 19:45", "link": null },
+      { "text": "🥟 Colline Emiliane — צהריים 25.2 בשעה 13:15 · +39 06 481 7538", "link": null },
+      { "text": "🍝 La Taverna dei Fori Imperiali — צהריים 27.2 בשעה 13:00 · +39 06 679 8643", "link": null }
+    ]
+  },
+  {
+    "id": "res-week",
+    "title": "4️⃣ שבוע לפני",
+    "subtitle": "פרטים אחרונים",
+    "color": "navy",
+    "items": [
+      { "text": "⛲ כרטיס לטרווי ({{eur:2}}) — רק אם רוצים לרדת לאגן לפני 22:00; בלילה חופשי", "link": null },
+      { "text": "🏛️ הפנתיאון ({{eur:7}}) — אם מתכננים להיכנס", "link": null },
+      { "text": "✈️ צ׳ק־אין מקוון לשתי הטיסות", "link": null },
+      { "text": "🚕 לבקש מהמלון מונית לשדה ל־28.2 בשעה 06:30", "link": null }
+    ]
+  },
+  {
+    "id": "res-tips",
+    "title": "💡 טיפים להזמנות",
+    "subtitle": "כדי שלא ייפלו",
+    "color": "navy",
+    "items": [
+      { "text": "בכרטיסי הוותיקן, הקולוסיאום והפנתיאון השם חייב להיות בדיוק כמו בדרכון", "link": null },
+      { "text": "רק אתרים רשמיים: tickets.museivaticani.va ו־ticketing.colosseo.it", "link": null },
+      { "text": "אחרי כל הזמנה לבדוק שהגיע מייל אישור, ולציין במסעדות שזו חופשה רומנטית", "link": null }
+    ]
+  }
+];
+
+
+/* ================================================================ */
+/*  LOGIC                                                            */
+/* ================================================================ */
+const APP_VERSION = "2026-11-18.1";
+const TRIP_START = "2027-02-25";          // first day of tripData; each following day is +1
+const FORECAST_HORIZON_DAYS = 15;         // Open-Meteo forecasts reach about 16 days ahead
+
+/* ---------- Small helpers ---------- */
+const $ = (id) => document.getElementById(id);
+
+// localStorage that can never throw (private mode, full quota, corrupt JSON)
+const store = {
+  get(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw == null ? fallback : JSON.parse(raw);
+    } catch (e) { return fallback; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* ignore */ }
+  }
+};
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function plain(html) { return String(html || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(); }
+function hashKey(s) {
+  let h = 5381;
+  for (const ch of String(s)) h = ((h << 5) + h + ch.codePointAt(0)) >>> 0;
+  return h.toString(36);
+}
+
+const HEX = { navy: "#3A1F2B", gold: "#C9A227", terracotta: "#B5502F", teal: "#5C7A4E" };
+const TEXT_HEX = { navy: "#3A1F2B", gold: "#86690C", terracotta: "#9E4426", teal: "#4A6340" }; // dark enough for small text
+const hex = (name) => HEX[name] || HEX.navy;
+const textHex = (name) => TEXT_HEX[name] || TEXT_HEX.navy;
+
+/* ---------- Dates ---------- */
+function isoAddDays(iso, n) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+}
+function daysBetween(fromIso, toIso) { return Math.round((Date.parse(toIso) - Date.parse(fromIso)) / 864e5); }
+
+// "Now" in Rome. For previewing a trip day before the trip, open the app
+// with ?now=2027-02-26T11:00 in the address.
+const TRIP_TZ = "Europe/Rome";
+function localNow() {
+  const forced = new URLSearchParams(location.search).get("now");
+  if (forced && /^\d{4}-\d{2}-\d{2}/.test(forced)) {
+    return { date: forced.slice(0, 10), time: (forced.slice(11, 16) || "00:00") };
+  }
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: TRIP_TZ, year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", hour12: false
+    }).formatToParts(new Date());
+    const g = (t) => parts.find((p) => p.type === t).value;
+    return { date: `${g("year")}-${g("month")}-${g("day")}`, time: `${g("hour") === "24" ? "00" : g("hour")}:${g("minute")}` };
+  } catch (e) {
+    const d = new Date();
+    return { date: d.toISOString().slice(0, 10), time: d.toTimeString().slice(0, 5) };
+  }
+}
+
+tripData.forEach((day, i) => { day.date = isoAddDays(TRIP_START, i); });
+const TRIP_END = tripData[tripData.length - 1].date;
+
+// Days with alternative plans ("variants"): the chosen one is remembered on this device.
+function applyVariant(day, variantId) {
+  if (!day.variants) return;
+  const v = day.variants.find((x) => x.id === variantId) || day.variants[0];
+  day.activeVariant = v.id;
+  day.activities = v.activities;
+}
+tripData.forEach((day) => applyVariant(day, store.get("rome_variant_" + day.id, null)));
+const dayLists = (day) => day.variants ? day.variants.map((v) => v.activities) : [day.activities];
+
+/* ---------- Recommendation groups ---------- */
+// vaultData order: restaurants and cafés, then rainy-day ideas, then practical guides.
+vaultData.forEach((v) => { v.group = v.group || "food"; });
+
+/* ---------------------------------------------------------------- */
+/*  ITEM REGISTRY — one lookup table for every item the sheet can show */
+/* ---------------------------------------------------------------- */
+const ITEM_REGISTRY = {};
+function buildRegistry() {
+  tripData.forEach((day) => {
+    dayLists(day).forEach((list) => list.forEach((a) => {
+      ITEM_REGISTRY[a.id] = { ...a, kind: "activity" };
+      (a.nearby || []).forEach((n, i) => {
+        const nid = `${a.id}-nearby-${i}`;
+        ITEM_REGISTRY[nid] = { ...n, id: nid, kind: "nearby" };
+      });
+    }));
+  });
+  vaultData.forEach((v, i) => {
+    ITEM_REGISTRY[`vault-${i}`] = { ...v, id: `vault-${i}`, kind: "vault" };
+  });
+}
+
+/* ---------------------------------------------------------------- */
+/*  PRICES — {{eur:55}} / {{eur:180-330}} tokens → "€55 (≈190 ₪)"   */
+/* ---------------------------------------------------------------- */
+let EUR_TO_ILS = 3.44;                    // fallback until a saved or live rate is available
+(function loadSavedRate() {
+  const saved = Number(store.get("rome_eur_rate", NaN));
+  if (saved > 1 && saved < 10) EUR_TO_ILS = saved;
+})();
+
+function eurToIls(eur) {
+  const v = eur * EUR_TO_ILS;
+  return v >= 100 ? Math.round(v / 5) * 5 : Math.round(v);
+}
+function fmtPrices(html) {
+  if (!html) return html || "";
+  return String(html).replace(/\{\{eur:(\d+(?:\.\d+)?)(?:-(\d+(?:\.\d+)?))?\}\}/g, (m, a, b) => {
+    const lo = parseFloat(a);
+    const fmt = (n) => "€" + n.toLocaleString("en-US", { maximumFractionDigits: 2 });
+    if (b === undefined) return `<span dir="ltr">${fmt(lo)}</span> <span class="text-navydeep/60">(≈${eurToIls(lo)} ₪)</span>`;
+    const hi = parseFloat(b);
+    return `<span dir="ltr">${fmt(lo)}–${fmt(hi)}</span> <span class="text-navydeep/60">(≈${eurToIls(lo)}–${eurToIls(hi)} ₪)</span>`;
+  });
+}
+
+/* ---------------------------------------------------------------- */
+/*  ITEM PRESENTATION                                                */
+/* ---------------------------------------------------------------- */
+const CATEGORY_COLOR = {
+  "טיסה": "navy", "לינה": "navy", "סיור": "gold", "שייט": "teal",
+  "פנאי": "terracotta", "נסיעה": "teal", "קניות": "gold", "ארוחה": "terracotta",
+  "מוזיאון": "gold", "שקיעה": "terracotta"
+};
+const COMPACT_CATEGORIES = ["ארוחה", "נסיעה"];   // rendered as slim rows, not photo cards
+
+function itemImages(item) { return (item && Array.isArray(item.images)) ? item.images.filter(Boolean) : []; }
+function itemColor(item) {
+  if (item.kind === "nearby") return "gold";
+  if (item.kind === "vault") return item.group === "rain" ? "navy" : item.group === "info" ? "terracotta" : "teal";
+  return CATEGORY_COLOR[item.category] || "navy";
+}
+function itemIcon(item) {
+  if (item.icon) return item.icon;
+  if (item.kind === "nearby") return item.menuUrl ? "fa-utensils" : "fa-location-dot";
+  if (item.kind === "vault") return item.group === "rain" ? "fa-umbrella" : item.group === "info" ? "fa-circle-info" : "fa-utensils";
+  return "fa-circle-info";
+}
+function itemMeta(item) {
+  if (item.kind === "activity") return `${item.category} · ${item.time}`;
+  if (item.kind === "nearby") return item.distance || "דברים קרובים";
+  return item.subtitle || "המלצה";
+}
+
+// A photo if the item has one, otherwise a designed icon tile.
+function mediaHTML(item, sizeClass, iconClass, extraClass) {
+  const imgs = itemImages(item);
+  const color = hex(itemColor(item));
+  const icon = itemIcon(item);
+  if (!imgs.length) {
+    return `<div class="tile ${sizeClass} ${extraClass || ""}" style="--c:${color}"><i class="fa-solid ${esc(icon)} ${iconClass}"></i></div>`;
+  }
+  return `<img src="${esc(imgs[0])}" alt="${esc(item.title)}" loading="lazy" decoding="async"
+    data-tile-color="${color}" data-tile-icon="${esc(icon)}" data-tile-size="${sizeClass} ${extraClass || ""}" data-tile-icon-size="${iconClass}"
+    class="${sizeClass} ${extraClass || ""} object-cover bg-paper">`;
+}
+
+// If a photo fails to load (offline and not cached yet), swap in the icon tile.
+document.addEventListener("error", (e) => {
+  const img = e.target;
+  if (!img || img.tagName !== "IMG" || !img.dataset.tileColor) return;
+  const tile = document.createElement("div");
+  tile.className = `tile ${img.dataset.tileSize}`;
+  tile.style.setProperty("--c", img.dataset.tileColor);
+  tile.innerHTML = `<i class="fa-solid ${img.dataset.tileIcon} ${img.dataset.tileIconSize}"></i>`;
+  img.replaceWith(tile);
+}, true);
+
+/* ---------------------------------------------------------------- */
+/*  STATE                                                            */
+/* ---------------------------------------------------------------- */
+let currentDayId = tripData[0].id;
+let weatherMode = "loading";              // "trip" (real dates) | "now" (current Rome weather) | "none"
+let weatherFromCache = false;
+let vaultFilter = "all";
+
+function todayDay() {
+  const now = localNow();
+  return tripData.find((d) => d.date === now.date) || null;
+}
+
+/* ---------------------------------------------------------------- */
+/*  WEATHER                                                          */
+/*  Far from the trip there is no forecast for the trip dates, so the */
+/*  day chips show Rome's weather   for the coming days, clearly      */
+/*  labelled. About two weeks before the flight the app switches by   */
+/*  itself to the real forecast for each trip date — no code change.  */
+/* ---------------------------------------------------------------- */
+const WEATHER_CACHE_KEY = "rome_weather_cache_v1";
+const DEST_LAT = 41.9028;
+const DEST_LON = 12.4964;
+
+const WEATHER_CODE_MAP = {
+  0:  { icon: "fa-sun",                 label: "בהיר" },
+  1:  { icon: "fa-cloud-sun",           label: "בהיר בעיקר" },
+  2:  { icon: "fa-cloud-sun",           label: "מעונן חלקית" },
+  3:  { icon: "fa-cloud",               label: "מעונן" },
+  45: { icon: "fa-smog",                label: "ערפילי" },
+  48: { icon: "fa-smog",                label: "ערפילי" },
+  51: { icon: "fa-cloud-rain",          label: "טפטוף קל" },
+  53: { icon: "fa-cloud-rain",          label: "טפטוף" },
+  55: { icon: "fa-cloud-rain",          label: "טפטוף חזק" },
+  56: { icon: "fa-cloud-rain",          label: "טפטוף קופא" },
+  57: { icon: "fa-cloud-rain",          label: "טפטוף קופא" },
+  61: { icon: "fa-cloud-showers-heavy", label: "גשם קל" },
+  63: { icon: "fa-cloud-showers-heavy", label: "גשם" },
+  65: { icon: "fa-cloud-showers-heavy", label: "גשם חזק" },
+  66: { icon: "fa-cloud-showers-heavy", label: "גשם קופא" },
+  67: { icon: "fa-cloud-showers-heavy", label: "גשם קופא" },
+  71: { icon: "fa-snowflake",           label: "שלג קל" },
+  73: { icon: "fa-snowflake",           label: "שלג" },
+  75: { icon: "fa-snowflake",           label: "שלג כבד" },
+  77: { icon: "fa-snowflake",           label: "שלג" },
+  80: { icon: "fa-cloud-showers-heavy", label: "ממטרים" },
+  81: { icon: "fa-cloud-showers-heavy", label: "ממטרים" },
+  82: { icon: "fa-cloud-showers-heavy", label: "ממטרים חזקים" },
+  85: { icon: "fa-snowflake",           label: "ממטרי שלג" },
+  86: { icon: "fa-snowflake",           label: "ממטרי שלג" },
+  95: { icon: "fa-bolt",                label: "סופת רעמים" },
+  96: { icon: "fa-bolt",                label: "סופת רעמים" },
+  99: { icon: "fa-bolt",                label: "סופת רעמים" }
+};
+function getWeatherVisual(code) { return WEATHER_CODE_MAP[code] || { icon: "fa-cloud", label: "לא זמין" }; }
+
+async function fetchWeather() {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${DEST_LAT}&longitude=${DEST_LON}` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min&current_weather=true&timezone=${encodeURIComponent(TRIP_TZ)}&forecast_days=16`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    store.set(WEATHER_CACHE_KEY, { fetchedAt: Date.now(), data });
+    applyWeatherData(data, false);
+  } catch (err) {
+    const cached = store.get(WEATHER_CACHE_KEY, null);
+    if (cached && cached.data) { applyWeatherData(cached.data, true); return; }
+    weatherMode = "none";
+    renderHeaderWeatherError();
+    tripData.forEach((day) => { day.weather = null; });
+    renderDaySelector();
+  }
+}
+
+function applyWeatherData(data, isFallback) {
+  weatherFromCache = !!isFallback;
+  if (!data) { weatherMode = "none"; renderHeaderWeatherError(); renderDaySelector(); return; }
+
+  // Header: the weather in Rome right now
+  const current = data.current_weather || data.current || null;
+  if (current && typeof current.temperature === "number") {
+    const code = current.weathercode !== undefined ? current.weathercode : current.weather_code;
+    renderHeaderWeather(current.temperature, code, isFallback);
+  } else {
+    renderHeaderWeatherError();
+  }
+
+  const daily = data.daily || {};
+  const dates = daily.time;
+  const codes = daily.weather_code || daily.weathercode;
+  const maxes = daily.temperature_2m_max;
+  const mins = daily.temperature_2m_min;
+  if (![dates, codes, maxes, mins].every(Array.isArray)) {
+    weatherMode = "none";
+    tripData.forEach((day) => { day.weather = null; });
+    renderDaySelector();
+    return;
+  }
+  const at = (i) => (typeof codes[i] === "number" && typeof maxes[i] === "number" && typeof mins[i] === "number")
+    ? { code: codes[i], max: Math.round(maxes[i]), min: Math.round(mins[i]) } : null;
+
+  // Does the forecast already reach any of the trip dates?
+  const covered = tripData.some((day) => dates.indexOf(day.date) !== -1);
+  if (covered) {
+    weatherMode = "trip";
+    tripData.forEach((day) => {
+      const i = dates.indexOf(day.date);
+      day.weather = i === -1 ? null : at(i);
+    });
+  } else {
+    weatherMode = "now";
+    tripData.forEach((day, i) => { day.weather = at(i); });
+  }
+  renderDaySelector();
+}
+
+function renderHeaderWeather(temp, code, isFallback) {
+  const v = getWeatherVisual(code);
+  $("headerWeather").innerHTML = `
+    <i class="fa-solid ${v.icon} text-goldlight"></i>
+    <span class="font-semibold text-sm">${Math.round(temp)}°</span>
+    ${isFallback ? '<i class="fa-solid fa-cloud-arrow-down text-xs text-cream/70" title="נתונים שמורים"></i>' : ""}`;
+}
+function renderHeaderWeatherError() {
+  $("headerWeather").innerHTML = `<i class="fa-solid fa-circle-question text-goldlight"></i><span class="text-xs">—</span>`;
+}
+
+function renderWeatherNote() {
+  const el = $("weatherNote");
+  if (!el) return;
+  const saved = weatherFromCache ? " (נתונים שמורים)" : "";
+  if (weatherMode === "trip") {
+    const missing = tripData.some((d) => !d.weather);
+    el.textContent = "תחזית אמיתית לתאריכי הטיול" + (missing ? " — הימים המאוחרים יתווספו כשהתחזית תגיע אליהם" : "") + saved + ".";
+  } else if (weatherMode === "now") {
+    el.textContent = "המעלות למעלה הן מזג האוויר ברומא בימים הקרובים, לא בתאריכי הטיול. התחזית האמיתית תופיע כאן לבד כשבועיים לפני הטיסה" + saved + ".";
+  } else if (weatherMode === "none") {
+    el.textContent = "אין כרגע נתוני מזג אוויר (אין חיבור ואין נתונים שמורים).";
+  } else {
+    el.textContent = "";
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/*  HEADER TAGLINE — countdown / day of trip                          */
+/* ---------------------------------------------------------------- */
+function renderTagline() {
+  const now = localNow();
+  const toStart = daysBetween(now.date, TRIP_START);
+  let text = "חופשה רומנטית";
+  if (toStart > 1) text += ` · עוד ${toStart} ימים`;
+  else if (toStart === 1) text += " · מחר טסים!";
+  else if (daysBetween(now.date, TRIP_END) >= 0) text += ` · יום ${1 - toStart} מתוך ${tripData.length}`;
+  $("headerTagline").textContent = text;
+}
+
+/* ---------------------------------------------------------------- */
+/*  RENDER: Day selector                                             */
+/* ---------------------------------------------------------------- */
+function renderDaySelector() {
+  const el = $("daySelector");
+  const keepScroll = el.scrollLeft;
+  const today = todayDay();
+  el.innerHTML = tripData.map((day) => {
+    const active = day.id === currentDayId;
+    const isToday = today && today.id === day.id;
+    const w = day.weather ? getWeatherVisual(day.weather.code) : null;
+    const weatherHtml = weatherMode === "loading"
+      ? `<i class="fa-solid fa-spinner fa-spin"></i>`
+      : w ? `<i class="fa-solid ${w.icon}"></i> <span dir="ltr">${day.weather.max}°/${day.weather.min}°</span>` : "—";
+    return `
+      <button data-act="day" data-arg="${day.id}" ${active ? 'aria-current="true"' : ""}
+        class="snap-start shrink-0 flex flex-col items-center justify-center gap-0.5 rounded-2xl px-4 py-3 min-w-[104px] transition shadow-card
+        ${active ? "bg-navy text-cream" : "bg-white text-navydeep/80"}">
+        <span class="text-xs font-semibold ${active ? "text-goldlight" : "text-navydeep/70"}">${esc(day.dayLabel)}${isToday ? " · היום" : ""}</span>
+        <span class="font-display text-lg font-bold">${esc(day.dateDisplay)}</span>
+        <span class="flex items-center gap-1 text-xs ${active ? "text-cream/90" : "text-navydeep/70"}">${weatherHtml}</span>
+      </button>`;
+  }).join("");
+  el.scrollLeft = keepScroll;
+  renderWeatherNote();
+}
+
+function centerActiveDay(smooth) {
+  const idx = tripData.findIndex((d) => d.id === currentDayId);
+  const btn = document.querySelectorAll("#daySelector button")[idx];
+  if (btn) btn.scrollIntoView({ inline: "center", behavior: smooth ? "smooth" : "auto", block: "nearest" });
+}
+
+/* ---------------------------------------------------------------- */
+/*  RENDER: Activity feed                                             */
+/* ---------------------------------------------------------------- */
+// On the day itself: which activity is happening now, and which is next.
+function dayProgress(day) {
+  const now = localNow();
+  if (day.date !== now.date) return { currentId: null, nextId: null };
+  let currentId = null, nextId = null;
+  for (const a of day.activities) {
+    if (a.time <= now.time) currentId = a.id;
+    else if (!nextId) nextId = a.id;
+  }
+  return { currentId, nextId };
+}
+
+function renderDay(dayId) {
+  const day = tripData.find((d) => d.id === dayId);
+  if (!day) return;
+  const progress = dayProgress(day);
+  const variant = day.variants ? day.variants.find((v) => v.id === day.activeVariant) : null;
+  const fromHome = (variant && variant.fromHome) || day.fromHome;
+  const toHome = (variant && variant.toHome) || day.toHome;
+  let html = "";
+  if (day.variants) {
+    html += `
+      <div class="bg-white rounded-2xl shadow-card p-3">
+        <p class="text-xs font-semibold text-navydeep/70 mb-2">ליום הזה יש שתי אפשרויות — בחרו:</p>
+        <div class="grid gap-2" style="grid-template-columns:repeat(${day.variants.length},minmax(0,1fr))">
+          ${day.variants.map((v) => `
+            <button data-act="variant" data-arg="${v.id}" aria-pressed="${v.id === day.activeVariant}"
+              class="rounded-xl py-2.5 px-2 text-sm font-semibold transition ${v.id === day.activeVariant ? "bg-navy text-cream" : "bg-paper text-navydeep"}">${esc(v.label)}</button>`).join("")}
+        </div>
+        ${variant && variant.note ? `<p class="text-sm text-navydeep/80 leading-relaxed mt-2">${esc(variant.note)}</p>` : ""}
+      </div>`;
+  }
+  if (fromHome) html += routeStripHTML(fromHome, "מהמלון");
+  day.activities.forEach((a, i) => {
+    const badge = a.id === progress.currentId ? "עכשיו" : a.id === progress.nextId ? "הבא בתור" : "";
+    html += (COMPACT_CATEGORIES.includes(a.category) && !a.card) ? compactRowHTML(a, badge) : activityCardHTML(a, badge);
+    const nextA = day.activities[i + 1];
+    if (nextA) {
+      const steps = routeData[a.id + "→" + nextA.id];
+      if (steps) html += routeStripHTML(steps);
+    }
+  });
+  if (toHome) html += routeStripHTML(toHome, "חזרה למלון");
+  $("activityFeed").innerHTML = html;
+}
+
+function routeStripHTML(steps, label) {
+  const modeColor = { walk: "navy", metro: "teal", tram: "teal", bus: "teal", uber: "terracotta", same: "navy" };
+  const stepsHtml = steps.map((s) => {
+    const c = textHex(modeColor[s.mode]);
+    const detail = s.detail ? ` <span class="text-navydeep/60">${/\{\{eur:/.test(s.detail) ? fmtPrices(s.detail) : `(${s.detail})`}</span>` : "";
+    return `
+      <div class="flex items-start gap-2.5">
+        <span class="w-6 h-6 rounded-full flex items-center justify-center shrink-0" style="color:${c};background:${c}1a">
+          <i class="fa-solid ${esc(s.icon)} text-[11px]"></i>
+        </span>
+        <span class="text-xs text-navydeep/80 leading-snug pt-1">${s.text}${detail}</span>
+        <span class="text-xs font-semibold mr-auto whitespace-nowrap pt-1" style="color:${c}">${esc(s.duration)}</span>
+      </div>`;
+  }).join("");
+  const total = steps.reduce((sum, s) => { const m = String(s.duration).match(/(\d+)/); return sum + (m ? parseInt(m[1], 10) : 0); }, 0);
+  return `
+    <div class="mx-1 px-3 py-2.5 border-r-[3px] border-teal/40 bg-teal/[0.04] rounded-lg">
+      <div class="flex items-center gap-1.5 mb-1.5">
+        <i class="fa-solid ${label ? "fa-house" : "fa-route"} text-xs text-teal"></i>
+        <span class="text-xs font-semibold text-teal">${label || "מסלול"}</span>
+        <span class="text-xs text-navydeep/60 mr-auto">סה״כ ~${total} ד׳</span>
+      </div>
+      <div class="flex flex-col gap-1.5">${stepsHtml}</div>
+    </div>`;
+}
+
+const optionalChip = (a) => a.optional ? `<span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-paper text-navydeep/80 whitespace-nowrap">אפשר לדלג</span>` : "";
+
+function badgeHTML(badge) {
+  return badge ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-gold text-navydeep whitespace-nowrap">${badge}</span>` : "";
+}
+
+function rainPlanHTML(plan) {
+  if (!plan) return "";
+  return `
+    <details class="mt-3 bg-teal/5 rounded-xl border border-teal/20 overflow-hidden">
+      <summary class="flex items-center gap-2 px-3 py-2.5 cursor-pointer text-sm font-semibold text-teal select-none">
+        <span>☔</span> תוכנית ב׳ לגשם
+        <i class="chev fa-solid fa-chevron-down text-xs mr-auto"></i>
+      </summary>
+      <div class="px-3 pb-3 text-sm text-navydeep/80 leading-relaxed">
+        <p class="font-semibold text-navydeep mb-1">${plan.title}</p>
+        <p class="mb-2">${fmtPrices(plan.description)}</p>
+        <button data-act="nav" data-arg="${esc(plan.mapQuery)}"
+          class="inline-flex items-center gap-1.5 bg-teal text-white rounded-lg px-3 py-2 text-xs font-semibold active:scale-95 transition">
+          <i class="fa-solid fa-diamond-turn-right"></i> נווט לחלופה
+        </button>
+      </div>
+    </details>`;
+}
+
+// Full photo card — for the things you actually came to see.
+function activityCardHTML(a, badge) {
+  const item = ITEM_REGISTRY[a.id];
+  const c = textHex(itemColor(item));
+  const hasPhoto = itemImages(a).length > 0;
+  return `
+    <article class="bg-white rounded-2xl shadow-card overflow-hidden ${badge === "הבא בתור" ? "next-up" : ""}">
+      <div class="relative">
+        <button data-act="info" data-arg="${a.id}" class="block w-full" aria-label="מידע על ${esc(a.title)}">
+          ${mediaHTML(item, hasPhoto ? "w-full h-40" : "w-full h-20", hasPhoto ? "" : "text-3xl", "")}
+        </button>
+        <span class="absolute top-3 right-3 bg-white/95 text-navydeep text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 pointer-events-none shadow">
+          <i class="fa-solid fa-clock text-[11px]"></i> ${esc(a.time)}
+        </span>
+        ${a.locked ? `
+          <span class="absolute top-3 left-3 bg-terracotta text-white text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow pointer-events-none">
+            <i class="fa-solid fa-lock text-[11px]"></i> מוזמן
+          </span>` : ""}
+      </div>
+      <div class="p-4">
+        <div class="flex items-center gap-2 mb-1.5">
+          <span class="w-7 h-7 rounded-full flex items-center justify-center" style="color:${c};background:${c}1a">
+            <i class="fa-solid ${esc(itemIcon(item))} text-[13px]"></i>
+          </span>
+          <span class="text-xs font-semibold text-navydeep/70">${esc(a.category)}</span>
+          <span class="mr-auto flex items-center gap-1.5">${optionalChip(a)}${badgeHTML(badge)}</span>
+        </div>
+        <h3 class="font-display text-lg font-bold leading-snug mb-3">${esc(a.title)}</h3>
+        <div class="grid grid-cols-2 gap-2">
+          <button data-act="nav" data-arg="${esc(a.mapQuery)}"
+            class="flex items-center justify-center gap-2 bg-navy text-cream rounded-xl py-2.5 text-sm font-semibold active:scale-95 transition">
+            <i class="fa-solid fa-diamond-turn-right"></i> נווט
+          </button>
+          <button data-act="info" data-arg="${a.id}"
+            class="flex items-center justify-center gap-2 bg-paper text-navydeep rounded-xl py-2.5 text-sm font-semibold active:scale-95 transition">
+            <i class="fa-solid fa-circle-info"></i> מידע
+          </button>
+        </div>
+        ${rainPlanHTML(a.rainPlanB)}
+        ${a.nearby && a.nearby.length ? nearbyStripHTML(a) : ""}
+      </div>
+    </article>`;
+}
+
+// Slim row — meals and rides. Tap the row for details, the arrow to navigate.
+function compactRowHTML(a, badge) {
+  const item = ITEM_REGISTRY[a.id];
+  const c = textHex(itemColor(item));
+  const nearby = a.nearby || [];
+  return `
+    <article class="bg-white rounded-2xl shadow-card p-3 ${badge === "הבא בתור" ? "next-up" : ""}">
+      <div class="flex items-center gap-3">
+        <button data-act="info" data-arg="${a.id}" class="flex items-center gap-3 flex-1 min-w-0 text-right">
+          <span class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style="color:${c};background:${c}1a">
+            <i class="fa-solid ${esc(itemIcon(item))}"></i>
+          </span>
+          <span class="min-w-0 flex-1">
+            <span class="flex items-center gap-2 text-xs font-semibold text-navydeep/70">
+              <span><i class="fa-solid fa-clock text-[11px]"></i> ${esc(a.time)} · ${esc(a.category)}</span>${optionalChip(a)}${badgeHTML(badge)}
+            </span>
+            <span class="block font-display font-bold text-base leading-snug">${esc(a.title)}</span>
+          </span>
+        </button>
+        <button data-act="nav" data-arg="${esc(a.mapQuery)}" aria-label="נווט אל ${esc(a.title)}"
+          class="w-11 h-11 rounded-xl bg-navy text-cream flex items-center justify-center shrink-0 active:scale-95 transition">
+          <i class="fa-solid fa-diamond-turn-right"></i>
+        </button>
+      </div>
+      ${rainPlanHTML(a.rainPlanB)}
+      ${nearby.length ? `
+        <details class="mt-2 border-t border-navydeep/10 pt-2">
+          <summary class="flex items-center gap-2 cursor-pointer text-xs font-semibold text-navydeep/70 select-none py-1">
+            <span>📌</span> חלופות קרובות (${nearby.length})
+            <i class="chev fa-solid fa-chevron-down text-[11px] mr-auto"></i>
+          </summary>
+          <div class="flex flex-col mt-1">
+            ${nearby.map((n, i) => `
+              <div class="flex items-center gap-2 py-1.5">
+                <button data-act="info" data-arg="${a.id}-nearby-${i}" class="flex-1 min-w-0 text-right">
+                  <span class="block text-sm font-semibold leading-snug">${esc(n.title)}</span>
+                  <span class="block text-xs text-navydeep/70">${esc(n.distance || "")}</span>
+                </button>
+                <button data-act="nav" data-arg="${esc(n.mapQuery)}" aria-label="נווט אל ${esc(n.title)}"
+                  class="w-9 h-9 rounded-lg bg-paper text-navy flex items-center justify-center shrink-0 active:scale-95 transition">
+                  <i class="fa-solid fa-diamond-turn-right text-sm"></i>
+                </button>
+              </div>`).join("")}
+          </div>
+        </details>` : ""}
+    </article>`;
+}
+
+function nearbyStripHTML(a) {
+  return `
+    <div class="mt-4 pt-4 border-t border-navydeep/10">
+      <p class="text-xs font-semibold text-navydeep/70 mb-2 flex items-center gap-1"><span>📌</span> ${a.category === "ארוחה" ? "חלופות" : "דברים קרובים"}</p>
+      <div class="flex gap-2 overflow-x-auto snap-x-mandatory -mx-1 px-1 pb-1">
+        ${a.nearby.map((n, i) => {
+          const nid = `${a.id}-nearby-${i}`;
+          return `
+            <div class="snap-start shrink-0 w-36 bg-paper rounded-xl overflow-hidden flex flex-col">
+              <button data-act="info" data-arg="${nid}" class="block text-right flex-1">
+                ${mediaHTML(ITEM_REGISTRY[nid], "w-full h-20", "text-2xl", "")}
+                <span class="block p-2 pb-1">
+                  <span class="block text-xs font-semibold leading-snug">${esc(n.title)}</span>
+                  <span class="block text-xs text-navydeep/70 mt-0.5">${esc(n.distance || "")}</span>
+                </span>
+              </button>
+              <button data-act="nav" data-arg="${esc(n.mapQuery)}"
+                class="mx-2 mb-2 pt-1.5 border-t border-navydeep/10 flex items-center gap-1 text-xs font-semibold text-teal active:opacity-60 transition">
+                <i class="fa-solid fa-diamond-turn-right"></i> נווט
+              </button>
+            </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+}
+
+/* ---------------------------------------------------------------- */
+/*  RENDER: Recommendations tab                                       */
+/* ---------------------------------------------------------------- */
+const VAULT_FILTERS = [
+  { id: "all", label: "הכול" },
+  { id: "food", label: "מסעדות וקפה" },
+  { id: "rain", label: "ליום גשום" }
+];
+
+function guideRowHTML(v, i) {
+  const item = ITEM_REGISTRY[`vault-${i}`];
+  return `
+    <button data-act="info" data-arg="vault-${i}" class="text-right bg-white rounded-2xl shadow-card overflow-hidden flex items-stretch w-full">
+      ${mediaHTML(item, "w-24 min-h-[6rem]", "text-2xl", "shrink-0 self-stretch")}
+      <span class="p-3 flex flex-col justify-center min-w-0">
+        <span class="font-display font-bold text-base leading-snug mb-1">${esc(v.title)}</span>
+        <span class="text-xs text-navydeep/70 leading-relaxed">${fmtPrices(v.subtitle)}</span>
+      </span>
+    </button>`;
+}
+
+function renderVault() {
+  $("vaultFilters").innerHTML = VAULT_FILTERS.map((f) => `
+    <button data-act="filter" data-arg="${f.id}" ${vaultFilter === f.id ? 'aria-pressed="true"' : 'aria-pressed="false"'}
+      class="px-3 py-1.5 rounded-full text-xs font-semibold transition ${vaultFilter === f.id ? "bg-navy text-cream" : "bg-white text-navydeep/80 shadow-card"}">${f.label}</button>`).join("");
+  $("vaultFeed").innerHTML = vaultData
+    .map((v, i) => ({ v, i }))
+    .filter(({ v }) => v.group !== "info" && (vaultFilter === "all" || v.group === vaultFilter))
+    .map(({ v, i }) => guideRowHTML(v, i)).join("");
+}
+
+/* ---------------------------------------------------------------- */
+/*  RENDER: Info tab                                                  */
+/* ---------------------------------------------------------------- */
+const EMERGENCY_NUMBERS = [
+  { label: "חירום כללי", number: "112" },
+  { label: "אמבולנס", number: "118" },
+  { label: "משטרה", number: "113" },
+  { label: "כבאות", number: "115" },
+  { label: "שגרירות ישראל", number: "+390636198500", display: "+39 06 3619 8500" }
+];
+
+function renderInfo() {
+  $("emergencyButtons").innerHTML = EMERGENCY_NUMBERS.map((n) => `
+    <a href="tel:${n.number}" class="${n.display ? "col-span-2 " : ""}flex flex-col items-center justify-center rounded-xl bg-terracotta/10 text-terracotta py-2.5 active:scale-95 transition">
+      <span class="text-lg font-bold" dir="ltr">${n.display || n.number}</span>
+      <span class="text-xs font-semibold" style="color:${TEXT_HEX.terracotta}">${n.label}</span>
+    </a>`).join("");
+
+  $("infoGuides").innerHTML = vaultData
+    .map((v, i) => ({ v, i })).filter(({ v }) => v.group === "info")
+    .map(({ v, i }) => guideRowHTML(v, i)).join("");
+
+  const cardHTML = (item) => `
+    <div class="bg-white rounded-2xl shadow-card p-4 flex items-start gap-3">
+      <span class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style="color:${textHex(item.color)};background:${textHex(item.color)}1a">
+        <i class="fa-solid ${esc(item.icon)}"></i>
+      </span>
+      <div class="min-w-0 flex-1">
+        <p class="font-semibold text-sm mb-0.5">${item.title}</p>
+        <div class="text-sm text-navydeep/80 leading-relaxed">${fmtPrices(item.text)}</div>
+      </div>
+    </div>`;
+  // Emergency numbers and currency already have full cards above, so only the
+  // transport-maps card and the remaining short notes are shown from toolkitInfo.
+  const extra = toolkitInfo.filter((t) => !/חירום|מטבע/.test(t.title));
+  $("toolkitInfoTop").innerHTML = extra.slice(0, 1).map(cardHTML).join("");
+  $("toolkitInfoRest").innerHTML = extra.slice(1).map(cardHTML).join("");
+  $("appVersion").textContent = APP_VERSION;
+  renderRateNote();
+}
+
+/* ---------------------------------------------------------------- */
+/*  CHECKLISTS — one implementation, ticks keyed by the item's text   */
+/*  (so reordering or adding items never moves a tick)                */
+/* ---------------------------------------------------------------- */
+const CHECKS_KEY = "rome_checks_v1";
+function getChecks() { const c = store.get(CHECKS_KEY, {}); return (c && typeof c === "object") ? c : {}; }
+
+function checklistItemsHTML(listId, items, color, small) {
+  const checks = getChecks()[listId] || {};
+  return items.map((it) => {
+    const text = typeof it === "string" ? it : it.text;
+    const link = typeof it === "string" ? null : it.link;
+    const key = hashKey(plain(text));
+    const checked = !!checks[key];
+    const linkHtml = link
+      ? ` <a href="${esc(link)}" target="_blank" rel="noopener" class="whitespace-nowrap text-xs font-semibold underline decoration-dotted" style="color:${textHex(color)}"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> קישור</a>`
+      : "";
+    return `
+      <label class="checklist-item ${checked ? "checked" : ""} flex items-start gap-3 py-2 cursor-pointer" style="--c:${hex(color)}">
+        <input type="checkbox" class="sr-only" data-check-list="${listId}" data-check-key="${key}" ${checked ? "checked" : ""}>
+        <span class="check-box w-5 h-5 rounded-md mt-0.5 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-check text-white text-[11px]"></i>
+        </span>
+        <span class="${small ? "text-sm" : "text-sm"} leading-snug flex-1"><span class="check-label">${fmtPrices(text)}</span>${linkHtml}</span>
+      </label>`;
+  }).join("");
+}
+
+document.addEventListener("change", (e) => {
+  const input = e.target;
+  if (!input.dataset || !input.dataset.checkList) return;
+  const all = getChecks();
+  const list = all[input.dataset.checkList] || (all[input.dataset.checkList] = {});
+  if (input.checked) list[input.dataset.checkKey] = true; else delete list[input.dataset.checkKey];
+  store.set(CHECKS_KEY, all);
+  input.closest(".checklist-item").classList.toggle("checked", input.checked);
+});
+
+function migrateOldChecks() { /* new app: no ticks from an older version to move */ }
+function renderLists() {
+  $("reservationsList").innerHTML = reservationsData.map((group) => `
+    <details class="rounded-xl overflow-hidden" style="border:1px solid ${hex(group.color)}40" ${group.id === "res-now" ? "open" : ""}>
+      <summary class="flex items-center gap-2 px-3 py-3 cursor-pointer select-none" style="background:${hex(group.color)}12">
+        <span class="text-sm font-bold flex-1" style="color:${textHex(group.color)}">${group.title}</span>
+        <i class="chev fa-solid fa-chevron-down text-xs" style="color:${textHex(group.color)}"></i>
+      </summary>
+      <div class="px-3 py-2 bg-white">
+        <p class="text-xs text-navydeep/70 mb-1">${group.subtitle}</p>
+        ${checklistItemsHTML("res", group.items, group.color, true)}
+      </div>
+    </details>`).join("");
+  $("packingList").innerHTML = checklistItemsHTML("packing", packingItems, "teal");
+  $("adminChecklist").innerHTML = checklistItemsHTML("admin", adminChecklistItems, "terracotta");
+}
+
+/* ---------------------------------------------------------------- */
+/*  CURRENCY                                                         */
+/* ---------------------------------------------------------------- */
+let rateSource = store.get("rome_eur_rate", null) ? "saved" : "default";
+function renderRateNote() {
+  const label = rateSource === "live" ? "עדכני" : rateSource === "saved" ? "שמור מהפעם האחרונה" : "הערכה — אין עדיין שער עדכני";
+  $("rateNoteValue").textContent = `1 EUR ≈ ${EUR_TO_ILS.toFixed(2)} ש״ח (${label})`;
+}
+
+function convertCurrency(source) {
+  const eurInput = $("eurInput"), ilsInput = $("ilsInput");
+  if (source === "eur") {
+    const eur = parseFloat(eurInput.value);
+    ilsInput.value = isNaN(eur) ? "" : (eur * EUR_TO_ILS).toFixed(2);
+  } else {
+    const ils = parseFloat(ilsInput.value);
+    eurInput.value = isNaN(ils) ? "" : (ils / EUR_TO_ILS).toFixed(2);
+  }
+}
+
+async function fetchExchangeRate() {
+  const sources = [
+    "https://api.frankfurter.dev/v1/latest?base=EUR&symbols=ILS",
+    "https://api.frankfurter.app/latest?from=EUR&to=ILS"
+  ];
+  for (const url of sources) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const data = await res.json();
+      const rate = Number(data && data.rates && data.rates.ILS);
+      if (!(rate > 1 && rate < 10)) continue;
+      const changed = Math.abs(rate - EUR_TO_ILS) / EUR_TO_ILS > 0.005;
+      EUR_TO_ILS = rate;
+      rateSource = "live";
+      store.set("rome_eur_rate", rate);
+      renderRateNote();
+      // Prices already on screen were drawn with the older rate — redraw only if it really moved.
+      if (changed) { renderDay(currentDayId); renderVault(); renderInfo(); renderLists(); }
+      return;
+    } catch (e) { /* try the next source */ }
+  }
+  renderRateNote();
+}
+
+/* ---------------------------------------------------------------- */
+/*  DETAIL SHEET                                                     */
+/* ---------------------------------------------------------------- */
+// The descriptions are free text. This reads their existing conventions
+// (a blank line between topics, an emoji at the start of a topic, "•" for
+// list items) and turns them into: quick facts, call-out boxes and paragraphs.
+const LEAD_EMOJI = /^(?:\p{Extended_Pictographic}|\p{Regional_Indicator})(?:️|‍\p{Extended_Pictographic}|\p{Regional_Indicator}|[\u{1F3FB}-\u{1F3FF}])*/u;
+const FACT_EMOJI = { "🕐": ["fa-clock", 0], "⏱": ["fa-hourglass-half", 1], "💰": ["fa-coins", 2], "🎫": ["fa-ticket", 3], "🚇": ["fa-train-subway", 4], "🚗": ["fa-car", 4], "📍": ["fa-location-dot", 5], "☎": ["fa-phone", 6] };
+const BOX_STYLE = {
+  "🎓": "guide", "⚠": "warn", "🚫": "warn", "❌": "warn", "💡": "tip", "✅": "tip", "👨": "who", "💑": "love"
+};
+
+function parseDescription(html) {
+  const blocks = [];
+  let cur = null;
+  String(html || "").split(/<br\s*\/?>/i).forEach((raw) => {
+    const line = raw.trim();
+    if (!line) { cur = null; return; }
+    if (/^•/.test(line)) {
+      if (!cur) { cur = { emoji: null, head: "", items: [] }; blocks.push(cur); }
+      cur.items.push(line.replace(/^•\s*/, ""));
+      return;
+    }
+    const m = line.match(LEAD_EMOJI);
+    if (m || !cur || cur.items.length || cur.emoji) {
+      cur = { emoji: m ? m[0] : null, head: m ? line.slice(m[0].length).trim() : line, items: [] };
+      blocks.push(cur);
+    } else {
+      cur.head += "<br>" + line;
+    }
+  });
+  return blocks;
+}
+
+function linkPhones(html) {
+  // Italian numbers written as +39 06 6993 4726 become tappable
+  return html.replace(/\+39(?:[  ]?\d{2,4}){2,5}/g, (m) => `<a href="tel:${m.replace(/[^+\d]/g, "")}" dir="ltr">${m}</a>`);
+}
+
+function descriptionHTML(html) {
+  const blocks = parseDescription(linkPhones(fmtPrices(html)));
+  const baseEmoji = (e) => e ? e.replace(/️/g, "").slice(0, [...e][0].length) : "";
+  const facts = [], body = [];
+  blocks.forEach((b) => {
+    const key = baseEmoji(b.emoji);
+    if (FACT_EMOJI[key] && !b.items.length) facts.push({ icon: FACT_EMOJI[key][0], order: FACT_EMOJI[key][1], html: b.head });
+    else body.push(b);
+  });
+  facts.sort((a, b) => a.order - b.order);
+
+  const factsHtml = facts.length ? `
+    <div class="facts bg-white rounded-2xl shadow-card px-3 py-1 mb-4 divide-y divide-navydeep/10">
+      ${facts.map((f) => `
+        <div class="flex items-start gap-3 py-2.5">
+          <i class="fa-solid ${f.icon} text-teal w-4 text-center mt-1 shrink-0"></i>
+          <div class="text-sm text-navydeep/90 leading-relaxed min-w-0">${f.html}</div>
+        </div>`).join("")}
+    </div>` : "";
+
+  const bodyHtml = body.map((b) => {
+    const style = BOX_STYLE[baseEmoji(b.emoji)];
+    const list = b.items.length ? `<ul>${b.items.map((i) => `<li>${i}</li>`).join("")}</ul>` : "";
+    const head = b.head ? `<p>${style ? "" : (b.emoji ? b.emoji + " " : "")}${b.head}</p>` : "";
+    if (style === "guide") {
+      return `<div class="blk rounded-2xl p-3.5 mb-3 text-sm leading-relaxed" style="background:#C9A2271f;color:#24131B">
+        <p class="font-bold mb-1 flex items-center gap-2" style="color:${TEXT_HEX.gold}"><i class="fa-solid fa-compass"></i> ${plain(b.head).replace(/:$/, "") || "הערות מדריך"}</p>${list}</div>`;
+    }
+    if (style === "warn") {
+      return `<div class="blk rounded-2xl p-3.5 mb-3 text-sm leading-relaxed border" style="background:#B5502F14;border-color:#B5502F55">
+        <div class="flex gap-2.5"><i class="fa-solid fa-triangle-exclamation mt-1 shrink-0" style="color:${TEXT_HEX.terracotta}"></i><div class="min-w-0">${head}${list}</div></div></div>`;
+    }
+    if (style === "tip") {
+      return `<div class="blk rounded-2xl p-3.5 mb-3 text-sm leading-relaxed border" style="background:#5C7A4E12;border-color:#5C7A4E44">
+        <div class="flex gap-2.5"><i class="fa-solid fa-lightbulb mt-1 shrink-0" style="color:${TEXT_HEX.teal}"></i><div class="min-w-0">${head}${list}</div></div></div>`;
+    }
+    if (style === "love") {
+      return `<div class="blk rounded-2xl p-3.5 mb-3 text-sm leading-relaxed border" style="background:#B5502F0f;border-color:#B5502F40">
+        <div class="flex gap-2.5"><i class="fa-solid fa-heart mt-1 shrink-0" style="color:${TEXT_HEX.terracotta}"></i><div class="min-w-0">${head}${list}</div></div></div>`;
+    }
+    if (style === "who") {
+      return `<div class="blk rounded-2xl p-3.5 mb-3 text-sm leading-relaxed bg-paper">
+        <div class="flex gap-2.5"><i class="fa-solid fa-people-group mt-1 shrink-0 text-navy"></i><div class="min-w-0">${head}${list}</div></div></div>`;
+    }
+    return `<div class="blk text-[15px] text-navydeep/90 leading-relaxed mb-3">${head}${list}</div>`;
+  }).join("");
+
+  return { factsHtml, bodyHtml };
+}
+
+function openItemInfo(id) {
+  const item = ITEM_REGISTRY[id];
+  if (!item) return;
+  const c = textHex(itemColor(item));
+  const imgs = itemImages(item);
+  const { factsHtml, bodyHtml } = descriptionHTML(item.description);
+
+  const media = imgs.length ? `
+    <div class="mb-4">
+      <div class="carousel flex overflow-x-auto snap-x snap-mandatory gap-3">
+        ${imgs.map((src, i) => `
+          <img src="${esc(src)}" alt="${esc(item.title)}" ${i ? 'loading="lazy"' : ""} decoding="async"
+            data-tile-color="${hex(itemColor(item))}" data-tile-icon="${esc(itemIcon(item))}" data-tile-size="snap-start shrink-0 w-full h-56 rounded-2xl" data-tile-icon-size="text-5xl"
+            class="snap-start snap-always shrink-0 w-full h-56 object-cover rounded-2xl bg-paper">`).join("")}
+      </div>
+      ${imgs.length > 1 ? `
+        <div class="carousel-dots flex justify-center gap-1.5 mt-2">
+          ${imgs.map((_, i) => `<span class="dot w-2 h-2 rounded-full transition ${i === 0 ? "bg-navy" : "bg-navydeep/20"}"></span>`).join("")}
+        </div>` : ""}
+    </div>` : "";
+
+  const buttons = [
+    `<button data-act="nav" data-arg="${esc(item.mapQuery)}" class="flex items-center justify-center gap-2 bg-navy text-cream rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-diamond-turn-right"></i> נווט לשם</button>`,
+    item.menuUrl ? `<button data-act="url" data-arg="${esc(item.menuUrl)}" class="flex items-center justify-center gap-2 bg-paper text-navydeep rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-utensils"></i> תפריט</button>` : "",
+    item.mapUrl ? `<button data-act="url" data-arg="${esc(item.mapUrl)}" class="flex items-center justify-center gap-2 bg-paper text-navydeep rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-map"></i> מפת המקום</button>` : ""
+  ].filter(Boolean);
+
+  $("infoModalContent").innerHTML = `
+    ${media}
+    <div class="flex items-center gap-2 mb-2">
+      <span class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="color:${c};background:${c}1a">
+        <i class="fa-solid ${esc(itemIcon(item))}"></i>
+      </span>
+      <span class="text-xs font-semibold text-navydeep/70 min-w-0">${fmtPrices(itemMeta(item))}</span>
+      ${item.kind === "activity" && item.locked ? `
+        <span class="text-xs font-semibold text-terracotta flex items-center gap-1 mr-auto whitespace-nowrap">
+          <i class="fa-solid fa-lock"></i> מוזמן מראש
+        </span>` : ""}
+    </div>
+    <h2 id="infoModalTitle" class="font-display text-2xl font-bold mb-3 leading-tight">${esc(item.title)}</h2>
+    <div class="grid gap-2 mb-4" style="grid-template-columns:repeat(${buttons.length},minmax(0,1fr))">${buttons.join("")}</div>
+    ${factsHtml}
+    ${bodyHtml}
+    ${item.rainPlanB ? `
+      <div class="bg-teal/5 rounded-2xl border border-teal/20 p-3.5 mb-2">
+        <p class="text-sm font-semibold text-teal flex items-center gap-2 mb-1.5"><span>☔</span> תוכנית ב׳ לגשם</p>
+        <p class="text-sm font-semibold text-navydeep mb-1">${item.rainPlanB.title}</p>
+        <p class="text-sm text-navydeep/80 leading-relaxed mb-2">${fmtPrices(item.rainPlanB.description)}</p>
+        <button data-act="nav" data-arg="${esc(item.rainPlanB.mapQuery)}"
+          class="inline-flex items-center gap-1.5 bg-teal text-white rounded-lg px-3 py-2 text-xs font-semibold active:scale-95 transition">
+          <i class="fa-solid fa-diamond-turn-right"></i> נווט לחלופה
+        </button>
+      </div>` : ""}`;
+
+  const carousel = $("infoModalContent").querySelector(".carousel");
+  if (carousel) carousel.addEventListener("scroll", () => updateCarouselDots(carousel), { passive: true });
+  openModal();
+}
+
+function updateCarouselDots(carouselEl) {
+  const dots = carouselEl.parentElement.querySelectorAll(".carousel-dots .dot");
+  const first = carouselEl.firstElementChild;
+  if (!dots.length || !first) return;
+  const slideWidth = first.getBoundingClientRect().width + 12;       // + gap-3
+  // RTL scrollLeft is zero-or-negative in current browsers; abs() covers both conventions
+  const active = Math.max(0, Math.min(Math.round(Math.abs(carouselEl.scrollLeft) / slideWidth), dots.length - 1));
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("bg-navy", i === active);
+    dot.classList.toggle("bg-navydeep/20", i !== active);
+  });
+}
+
+/* ---------- Sheet open / close (the phone's Back button closes it) ---------- */
+let modalOpen = false;
+
+function openModal() {
+  const modal = $("infoModal");
+  const sheet = modal.querySelector(".sheet");
+  sheet.style.transform = "";
+  sheet.scrollTop = 0;
+  modal.classList.remove("hidden");
+  document.body.classList.add("overflow-hidden");
+  requestAnimationFrame(() => sheet.classList.remove("translate-y-full"));
+  if (!modalOpen) {
+    modalOpen = true;
+    try { history.pushState({ sheet: true }, ""); } catch (e) { /* ignore */ }
+  }
+}
+
+function hideModal(immediate) {
+  if (!modalOpen) return;
+  modalOpen = false;
+  const modal = $("infoModal");
+  modal.querySelector(".sheet").classList.add("translate-y-full");
+  document.body.classList.remove("overflow-hidden");
+  if (immediate) modal.classList.add("hidden");
+  else setTimeout(() => { if (!modalOpen) modal.classList.add("hidden"); }, 300);
+}
+
+function closeModal(immediate) {
+  if (!modalOpen) return;
+  const viaHistory = history.state && history.state.sheet;
+  hideModal(immediate);
+  if (viaHistory) { try { history.back(); } catch (e) { /* ignore */ } }
+}
+
+window.addEventListener("popstate", () => hideModal(false));
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(false); });
+
+// Drag the sheet down to close it (only from the top of its scroll).
+function setupSwipeToClose() {
+  const sheet = document.querySelector("#infoModal .sheet");
+  if (!sheet) return;
+  const SPRING = "cubic-bezier(.32,.72,0,1)";
+  const CLOSE_THRESHOLD = 100, DUR = 260;
+  let startY = 0, deltaY = 0, dragging = false, rafId = null, pendingY = 0;
+
+  const apply = () => { rafId = null; if (dragging) sheet.style.transform = `translateY(${pendingY}px)`; };
+
+  sheet.addEventListener("touchstart", (e) => {
+    if (sheet.scrollTop > 0 || e.target.closest(".carousel")) { dragging = false; return; }
+    dragging = true; startY = e.touches[0].clientY; deltaY = 0; pendingY = 0;
+    sheet.style.transition = "none";
+  }, { passive: true });
+
+  sheet.addEventListener("touchmove", (e) => {
+    if (!dragging) return;
+    deltaY = e.touches[0].clientY - startY;
+    if (deltaY <= 0) { pendingY = 0; }
+    else { e.preventDefault(); pendingY = deltaY; }
+    if (rafId === null) rafId = requestAnimationFrame(apply);
+  }, { passive: false });
+
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+    sheet.style.transition = `transform ${DUR}ms ${SPRING}`;
+    if (deltaY > CLOSE_THRESHOLD) {
+      sheet.style.transform = `translateY(${sheet.offsetHeight}px)`;
+      setTimeout(() => {
+        sheet.style.transition = ""; sheet.style.transform = "";
+        closeModal(true);
+      }, DUR);
+    } else {
+      sheet.style.transform = "translateY(0)";
+      setTimeout(() => { sheet.style.transition = ""; sheet.style.transform = ""; }, DUR);
+    }
+    deltaY = 0;
+  };
+  sheet.addEventListener("touchend", endDrag);
+  sheet.addEventListener("touchcancel", endDrag);
+}
+
+/* ---------------------------------------------------------------- */
+/*  ACTIONS                                                          */
+/* ---------------------------------------------------------------- */
+function selectDay(dayId, opts) {
+  currentDayId = dayId;
+  store.set("rome_last_day", dayId);
+  renderDaySelector();
+  renderDay(dayId);
+  centerActiveDay(!(opts && opts.instant));
+}
+
+function navigateTo(query) {
+  window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, "_blank", "noopener");
+}
+
+function switchTab(tab, opts) {
+  if (!$(`tab-${tab}`)) tab = "timeline";
+  document.querySelectorAll(".tab-panel").forEach((p) => p.classList.add("hidden"));
+  $(`tab-${tab}`).classList.remove("hidden");
+  document.querySelectorAll(".nav-btn").forEach((btn) => {
+    const active = btn.dataset.arg === tab;
+    btn.classList.toggle("text-navy", active);
+    btn.classList.toggle("text-navydeep/60", !active);
+    if (active) btn.setAttribute("aria-current", "page"); else btn.removeAttribute("aria-current");
+  });
+  store.set("rome_last_tab", tab);
+  if (!(opts && opts.keepScroll)) window.scrollTo(0, 0);
+}
+
+// One click handler for the whole app. Elements declare what they do with
+// data-act / data-arg, so place names never end up inside JavaScript strings.
+document.addEventListener("click", (e) => {
+  const el = e.target.closest("[data-act]");
+  if (!el) return;
+  const arg = el.dataset.arg;
+  switch (el.dataset.act) {
+    case "day":    selectDay(arg); break;
+    case "info":   openItemInfo(arg); break;
+    case "nav":    navigateTo(arg); break;
+    case "url":    window.open(arg, "_blank", "noopener"); break;
+    case "close":  closeModal(false); break;
+    case "tab":    switchTab(arg); break;
+    case "filter": vaultFilter = arg; renderVault(); break;
+    case "variant": {
+      const day = tripData.find((d) => d.id === currentDayId);
+      if (day && day.variants) { applyVariant(day, arg); store.set("rome_variant_" + day.id, arg); renderDay(day.id); }
+      break;
+    }
+  }
+});
+
+// Swipe sideways on the day's feed to move between days (RTL: later days are to the left,
+// so dragging the page to the right brings in the next day).
+function setupSwipeBetweenDays() {
+  const timeline = $("tab-timeline"), feed = $("activityFeed");
+  if (!timeline || !feed) return;
+  const SWIPE_THRESHOLD = 60, DIRECTION_LOCK = 10, DUR = 240;
+  const SPRING = "cubic-bezier(.32,.72,0,1)";
+  let startX = 0, startY = 0, tracking = false, axis = null, currentDx = 0, animating = false;
+
+  timeline.addEventListener("touchstart", (e) => {
+    if (animating || e.target.closest(".overflow-x-auto")) { tracking = false; return; }
+    tracking = true; axis = null; currentDx = 0;
+    startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+    feed.style.transition = "none";
+  }, { passive: true });
+
+  timeline.addEventListener("touchmove", (e) => {
+    if (!tracking) return;
+    const dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY;
+    if (axis === null) {
+      if (Math.abs(dx) < DIRECTION_LOCK && Math.abs(dy) < DIRECTION_LOCK) return;
+      axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    }
+    if (axis !== "x") return;
+    e.preventDefault();
+    currentDx = dx;
+    const idx = tripData.findIndex((d) => d.id === currentDayId);
+    const atEdge = (dx > 0 && idx === tripData.length - 1) || (dx < 0 && idx === 0);
+    feed.style.transform = `translateX(${atEdge ? dx / 3 : dx}px)`;
+  }, { passive: false });
+
+  const endDrag = () => {
+    if (!tracking) return;
+    tracking = false;
+    if (axis !== "x") return;
+    const dx = currentDx, width = feed.offsetWidth;
+    const idx = tripData.findIndex((d) => d.id === currentDayId);
+    const newIdx = idx + (dx > 0 ? 1 : -1);
+    const turn = Math.abs(dx) > SWIPE_THRESHOLD && newIdx >= 0 && newIdx < tripData.length;
+    feed.style.transition = `transform ${DUR}ms ${SPRING}`;
+    if (!turn) {
+      feed.style.transform = "translateX(0)";
+      setTimeout(() => { feed.style.transition = ""; feed.style.transform = ""; }, DUR);
+      return;
+    }
+    animating = true;
+    const offX = dx > 0 ? width : -width;
+    feed.style.transform = `translateX(${offX}px)`;
+    setTimeout(() => {
+      selectDay(tripData[newIdx].id);
+      feed.style.transition = "none";
+      feed.style.transform = `translateX(${-offX}px)`;
+      void feed.offsetWidth;
+      feed.style.transition = `transform ${DUR}ms ${SPRING}`;
+      feed.style.transform = "translateX(0)";
+      setTimeout(() => { feed.style.transition = ""; feed.style.transform = ""; animating = false; }, DUR);
+    }, DUR);
+  };
+  timeline.addEventListener("touchend", endDrag, { passive: true });
+  timeline.addEventListener("touchcancel", endDrag, { passive: true });
+}
+
+function setupCollapsingHeader() {
+  const header = $("topHeader");
+  if (!header) return;
+  let collapsed = false, lastY = window.scrollY || 0, ticking = false;
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY || 0, direction = y - lastY;
+    lastY = y;
+    if (!collapsed && y > 50 && direction > 0) { header.classList.add("collapsed"); collapsed = true; }
+    else if (collapsed && y < 45 && direction < 0) { header.classList.remove("collapsed"); collapsed = false; }
+  };
+  window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+}
+
+/* ---------------------------------------------------------------- */
+/*  OFFLINE                                                          */
+/*  sw.js keeps the app itself available without a connection. Here   */
+/*  the page saves every photo in the background after the first      */
+/*  online visit, and reports progress in the Info tab.               */
+/* ---------------------------------------------------------------- */
+const IMG_CACHE = "rome-img-v1";
+
+function allImageUrls() {
+  const set = new Set();
+  Object.values(ITEM_REGISTRY).forEach((item) => itemImages(item).forEach((u) => set.add(u)));
+  return [...set];
+}
+
+function setOfflineStatus(text) { const el = $("offlineStatus"); if (el) el.textContent = text; }
+
+async function warmOfflineCache() {
+  const urls = allImageUrls();
+  if (!("serviceWorker" in navigator) || !("caches" in window) || !/^https?:$/.test(location.protocol)) {
+    setOfflineStatus("הדפדפן הזה לא תומך בשמירה לשימוש בלי קליטה (או שהדף נפתח כקובץ מקומי).");
+    return;
+  }
+  const cache = await caches.open(IMG_CACHE);
+  const report = async () => {
+    let have = 0;
+    for (const u of urls) { if (await cache.match(u)) have++; }
+    const total = urls.length;
+    setOfflineStatus(have === total
+      ? `מוכן: האפליקציה וכל ${total} התמונות שמורות במכשיר. אפשר לפתוח גם בלי קליטה.`
+      : `נשמרו ${have} מתוך ${total} תמונות. פתחו את האפליקציה פעם אחת עם Wi-Fi כדי להשלים.`);
+    return have === total;
+  };
+  if (await report()) return;
+  if (!navigator.onLine || (navigator.connection && navigator.connection.saveData)) return;
+  let done = 0;
+  for (const u of urls) {
+    try {
+      if (!(await cache.match(u))) {
+        const cross = /^https?:/.test(u);
+        const res = await fetch(u, cross ? { mode: "no-cors" } : {});
+        if (res.ok || res.type === "opaque") await cache.put(u, res);
+      }
+    } catch (e) { /* keep going; the next visit retries */ }
+    if (++done % 10 === 0) setOfflineStatus(`שומר תמונות לשימוש בלי קליטה… ${done}/${urls.length}`);
+  }
+  report();
+}
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator) || !/^https?:$/.test(location.protocol)) return;
+  navigator.serviceWorker.register("sw.js").catch(() => { /* app still works online */ });
+}
+
+/* ---------------------------------------------------------------- */
+/*  INIT                                                              */
+/* ---------------------------------------------------------------- */
+function init() {
+  buildRegistry();
+  migrateOldChecks();
+
+  // Which day to open: today during the trip, otherwise the day last viewed.
+  const today = todayDay();
+  const lastDay = store.get("rome_last_day", null);
+  if (today) currentDayId = today.id;
+  else if (tripData.some((d) => d.id === lastDay)) currentDayId = lastDay;
+
+  renderTagline();
+  renderDaySelector();
+  renderDay(currentDayId);
+  renderVault();
+  renderInfo();
+  renderLists();
+  switchTab(today ? "timeline" : store.get("rome_last_tab", "timeline"), { keepScroll: true });
+  centerActiveDay(false);
+
+  $("eurInput").addEventListener("input", () => convertCurrency("eur"));
+  $("ilsInput").addEventListener("input", () => convertCurrency("ils"));
+  setupSwipeToClose();
+  setupSwipeBetweenDays();
+  setupCollapsingHeader();
+
+  fetchWeather();
+  fetchExchangeRate();
+  registerServiceWorker();
+  setTimeout(() => { warmOfflineCache().catch(() => {}); }, 2500);
+
+  // Keep "now / next" and the countdown fresh while the app stays open.
+  setInterval(() => { renderTagline(); if (todayDay()) { renderDaySelector(); renderDay(currentDayId); } }, 5 * 60 * 1000);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible") return;
+    renderTagline();
+    if (todayDay()) { renderDaySelector(); renderDay(currentDayId); }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+
+</body>
+</html>

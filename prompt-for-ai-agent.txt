@@ -1,0 +1,37 @@
+You are helping me personalise a trip web app for a romantic getaway in Rome with my wife, 25–28 February 2027. Attached is rome-2027.zip with the app's 6 files (index.html, sw.txt, manifest.webmanifest, app-icon-192.png, app-icon-512.png, app-icon-maskable-512.png). IMPORTANT: sw.txt is really sw.js — it was renamed only so email would not block it. Treat it as sw.js, and in the files you give back name it sw.js. Together these files are a complete, working, offline-capable app (PWA) in Hebrew, right-to-left. It was built for us as a gift. Your job is to improve it for our personal tastes, not to rebuild it.
+
+FIXED FACTS (do not change unless I say so)
+- Dates: Thu 25.2.2027 – Sun 28.2.2027. Flight from Israel departs 08:15 on 25.2; flight back from Rome departs 10:15 on 28.2.
+- Hotel: Circle6 Rome, Via del Tritone 68.
+- We want a romantic holiday, good restaurants, and a Michelin dinner on Friday 26.2.
+
+HOW THE APP WORKS (read the code before changing anything)
+- Everything is in index.html. The content lives in data blocks at the top of the main <script>: tripData (days and activities), routeData (walking/transit steps between activities, keyed "id1→id2"), vaultData (recommendations; each has "group": food | rain | info), toolkitInfo, packingItems, adminChecklistItems ("verify before the flight"), reservationsData ("what to book and when").
+- Descriptions are free text with conventions the app turns into a layout: separate topics with <br><br>; lines starting with 🕐 ⏱ 💰 🎫 🚇 🚗 📍 ☎ become quick facts; blocks starting with 🎓 (guide notes), ⚠/❌ (warnings), 💡 (tips), 💑 (romantic moment) become coloured boxes; "•" lines become bullets.
+- Prices are tokens like {{eur:55}} or {{eur:180-330}}; the app converts them to shekels.
+- Optional fields: "optional": true, "locked": true (already booked), "rainPlanB", "nearby" (alternatives), "card": true (show a meal as a big card), day "variants" (two alternative plans for one day, switchable in the app).
+- sw.js and manifest.webmanifest make it work offline and installable. Whenever you change index.html, bump APP_VERSION in index.html and SHELL_VERSION in sw.js to the same new value.
+- Keep every existing feature, the Hebrew RTL interface, the design, and the offline behaviour.
+
+STEP 1 — GET TO KNOW US
+Before editing, interview me. Ask a few questions at a time, in Hebrew, and keep it short. If you have memory or past conversations with me, use them to propose what you think we like (food, pace, interests, budget, past trips) and ask me to confirm — don't assume. Cover at least:
+- Food: what we love and avoid, allergies or dietary needs, wine/cocktails, budget per dinner.
+- Which Michelin restaurant for Friday (the app suggests Imàgo, with Orma Roma, La Pergola, Il Pagliaccio and Acquolina as alternatives), and whether we already booked anything.
+- Pace: what time we like to start the day, how much walking is fine, how much free time we want, afternoon rest.
+- Interests: art and museums, ancient history, shopping, churches, viewpoints, nightlife, spa or massage, a cooking class, a special surprise moment.
+- Any occasion (anniversary, birthday) to plan around.
+- Our real flight details (airline, airport — the app currently assumes Fiumicino and landing around 11:30 Rome time).
+- Photos: do we want to add our own photos of places, or a photo of us for the app icon.
+Then summarise what you understood and propose the changes as a list. Wait for my OK before editing.
+
+STEP 2 — RESEARCH RULES (very important)
+- Never invent facts. Every opening day and hour, price, booking window, phone number, address and Michelin status must come from a source you checked now (official site first). Opening days must match the weekday of each date: 25.2 is Thursday, 26.2 Friday, 27.2 Saturday, 28.2 Sunday.
+- If you can't find something, write so plainly in the app (in Hebrew) and add a line to adminChecklistItems.
+- Walking times are estimates: say so and keep the "verify routes in a maps app" checklist item.
+- Update reservationsData with exact dates for anything new we add (for example, tickets that open N days before).
+
+STEP 3 — EDIT, TEST, DELIVER
+- Make the changes in the data blocks; change code only if needed.
+- Check that the page loads without JavaScript errors and every day, tab and detail sheet opens.
+- Give me back all 6 files with their real names (index.html, sw.js, manifest.webmanifest and the three app-icon PNGs), in one zip, plus a short list of what changed.
+- If I want, walk me step by step through uploading the files to GitHub Pages and installing the app on both our phones.

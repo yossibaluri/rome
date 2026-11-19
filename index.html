@@ -66,6 +66,8 @@
   #topHeader .header-tagline { max-height: 1.25rem; opacity: 1; overflow: hidden; transition: max-height .15s ease-out, opacity .12s ease-out; }
   #topHeader .header-title { font-size: 1.5rem; transition: font-size .15s ease-out; }
   #topHeader #headerWeather { transition: padding .15s ease-out, transform .15s ease-out; }
+  #topHeader .header-photo { width: 2.75rem; height: 2.75rem; border: 2px solid #E8C766; transition: width .15s ease-out, height .15s ease-out; }
+  #topHeader.collapsed .header-photo { width: 1.9rem; height: 1.9rem; }
   #topHeader.collapsed .header-inner { padding-top: 0.4rem; padding-bottom: 0.4rem; }
   #topHeader.collapsed .header-tagline { max-height: 0; opacity: 0; }
   #topHeader.collapsed .header-title { font-size: 1.125rem; }
@@ -117,9 +119,12 @@
 <!-- ================================================================ -->
 <header id="topHeader" class="sticky top-0 z-40 bg-navy text-cream shadow-lg">
   <div class="header-inner max-w-md mx-auto px-5 flex items-center justify-between">
-    <div class="min-w-0">
+    <div class="min-w-0 flex items-center gap-3">
+      <img src="couple.jpg" alt="" class="header-photo rounded-full object-cover shrink-0" width="44" height="44">
+      <div class="min-w-0">
       <p id="headerTagline" class="header-tagline text-xs tracking-wide text-goldlight font-medium">חופשה רומנטית</p>
       <h1 class="header-title font-display font-bold leading-tight">רומא <span class="text-goldlight">2027</span></h1>
+      </div>
     </div>
     <div id="headerWeather" class="flex items-center gap-2 bg-white/10 rounded-2xl px-3 py-2 min-w-[84px] justify-center" aria-label="מזג האוויר ברומא כרגע">
       <i class="fa-solid fa-spinner fa-spin text-goldlight"></i>
@@ -371,6 +376,7 @@ const tripData = [
       },
       {
         "id": "d1-class",
+        "bookUrl": "https://romanjews.com/tour-kosher-cooking-classes/",
         "time": "16:30",
         "title": "סדנת בישול כשרה בגטו",
         "category": "ארוחה",
@@ -383,6 +389,7 @@ const tripData = [
         "nearby": [
           {
             "title": "חלופה: Italian Cooking Classes in Rome",
+            "bookUrl": "https://italiancookingclassesinrome.com/en/cooking-classes/pasta-making-class-in-rome-tiramisu",
             "distance": "Piazza Margana, כ־5 דקות מהגטו (הערכה)",
             "images": [],
             "mapQuery": "Piazza Margana 22 Rome",
@@ -419,6 +426,7 @@ const tripData = [
     "activities": [
       {
         "id": "d2-a1",
+        "bookUrl": "https://portale.museiitaliani.it/b2c/buyTicketless/b3c4c0c6-a7b3-4e0b-a10a-113f5be44d51",
         "time": "09:00",
         "title": "Galleria Borghese",
         "category": "מוזיאון",
@@ -451,6 +459,7 @@ const tripData = [
       },
       {
         "id": "d2-a3",
+        "bookUrl": "https://prenotazioni.museoebraico.roma.it",
         "time": "12:15",
         "title": "המוזיאון היהודי ובית הכנסת הגדול",
         "category": "מוזיאון",
@@ -570,6 +579,7 @@ const tripData = [
         "activities": [
           {
             "id": "d3-a1",
+        "bookUrl": "https://www.villafarnesina.it/en/tickets-info-and-purchase/",
             "time": "09:00",
             "title": "Villa Farnesina — ציורי רפאל",
             "category": "מוזיאון",
@@ -646,6 +656,7 @@ const tripData = [
           },
           {
             "id": "d3-dinner-aroma",
+        "bookUrl": "https://www.manfredihotels.com/en/aroma/",
             "time": "20:00",
             "title": "ערב מישלן — Aroma",
             "category": "ארוחה",
@@ -715,6 +726,7 @@ const tripData = [
   const shared = sat.variants[0].activities.slice(0, -1);
   sat.variants[1].activities = [...shared, {
     "id": "d3-dinner-orma",
+        "bookUrl": "https://ormaroma.plateform.app/welcome",
     "time": "20:00",
     "title": "ערב מישלן — Orma Roma",
     "category": "ארוחה",
@@ -796,6 +808,7 @@ const vaultData = [
   {
     "group": "food",
     "title": "Aroma ⭐",
+    "bookUrl": "https://www.manfredihotels.com/en/aroma/",
     "subtitle": "גג מול הקולוסיאום, תפריט טעימות צמחוני",
     "icon": "fa-star",
     "images": [],
@@ -805,6 +818,7 @@ const vaultData = [
   {
     "group": "food",
     "title": "Orma Roma ⭐⭐",
+    "bookUrl": "https://ormaroma.plateform.app/welcome",
     "subtitle": "שני כוכבים חדשים (2027), קולומביה פוגשת איטליה",
     "icon": "fa-star",
     "images": [],
@@ -972,7 +986,7 @@ const reservationsData = [
     "subtitle": "ערב המישלן של שבת 27.2 והסדנה",
     "color": "terracotta",
     "items": [
-      { "text": "⭐ Aroma לשבת 27.2, 20:00 — לבדוק מקום ולשלוח את נוסח הבקשה (לשונית ״מידע״) · +39 06 9761 5109", "link": "https://www.manfredihotels.com" },
+      { "text": "⭐ Aroma לשבת 27.2, 20:00 — לבדוק מקום ולשלוח את נוסח הבקשה (לשונית ״מידע״) · +39 06 9761 5109", "link": "https://www.manfredihotels.com/en/aroma/" },
       { "text": "⭐⭐ Orma Roma לשבת 27.2, 20:00 — לבדוק מקום ולשלוח במייל את נוסח הבקשה ל־info@ormaroma.it", "link": "https://ormaroma.plateform.app/welcome" },
       { "text": "✅ אחרי שתי התשובות — להשאיר אחת ולבטל את השנייה (לבדוק מדיניות ביטול), ולבחור את האפשרות באפליקציה ביום שבת", "link": null },
       { "text": "🍝 RomanJews — סדנת בישול כשרה, 25.2 בשעה 16:30, {{eur:100}} לאדם · info@romanjews.com · +39 345 846 4290", "link": "https://romanjews.com/tour-kosher-cooking-classes/" }
@@ -1027,7 +1041,7 @@ const reservationsData = [
 /* ================================================================ */
 /*  LOGIC                                                            */
 /* ================================================================ */
-const APP_VERSION = "2026-11-19.1";
+const APP_VERSION = "2026-11-19.2";
 const TRIP_START = "2027-02-25";          // first day of tripData; each following day is +1
 const FORECAST_HORIZON_DAYS = 15;         // Open-Meteo forecasts reach about 16 days ahead
 
@@ -1427,6 +1441,14 @@ function renderDay(dayId) {
         ${variant && variant.note ? `<p class="text-sm text-navydeep/80 leading-relaxed mt-2">${esc(variant.note)}</p>` : ""}
       </div>`;
   }
+  if (day.id === "day1") html += `
+      <div class="rounded-2xl overflow-hidden shadow-card bg-white">
+        <img src="couple.jpg" alt="" class="w-full object-cover" style="max-height:260px">
+        <div class="p-4 text-center">
+          <p class="font-display text-lg font-bold">רומא, פעם שנייה</p>
+          <p class="text-sm text-navydeep/70 mt-1">25–28.2.2027 · רק אנחנו, בלי תורים</p>
+        </div>
+      </div>`;
   if (fromHome) html += routeStripHTML(fromHome, "מהמלון");
   day.activities.forEach((a, i) => {
     const badge = a.id === progress.currentId ? "עכשיו" : a.id === progress.nextId ? "הבא בתור" : "";
@@ -1895,6 +1917,7 @@ function openItemInfo(id) {
   const buttons = [
     `<button data-act="nav" data-arg="${esc(item.mapQuery)}" class="flex items-center justify-center gap-2 bg-navy text-cream rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-diamond-turn-right"></i> נווט לשם</button>`,
     item.menuUrl ? `<button data-act="url" data-arg="${esc(item.menuUrl)}" class="flex items-center justify-center gap-2 bg-paper text-navydeep rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-utensils"></i> תפריט</button>` : "",
+    item.bookUrl ? `<button data-act="url" data-arg="${esc(item.bookUrl)}" class="flex items-center justify-center gap-2 bg-gold text-white rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-calendar-check"></i> הזמנה</button>` : "",
     item.mapUrl ? `<button data-act="url" data-arg="${esc(item.mapUrl)}" class="flex items-center justify-center gap-2 bg-paper text-navydeep rounded-xl py-3 text-sm font-semibold active:scale-95 transition"><i class="fa-solid fa-map"></i> מפת המקום</button>` : ""
   ].filter(Boolean);
 
